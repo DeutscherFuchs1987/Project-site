@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мемы по-русски | Исследование цифрового фольклора</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #D12128;  /* Ярко-красный */
+            --secondary: #01344F; /* Глубокий синий */
+            --accent: #FAE3AC;    /* Тёплый кремовый */
+            --dark-bg: #0F1419;   /* Основной фон */
+            --card-bg: #1A2026;   /* Фон карточек */
+            --nav-bg: #121920;    /* Фон навигации */
+            --text-light: #F0F3F6; /* Основной текст */
+            --text-muted: #8B98A8; /* Второстепенный текст */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Плавный скролл */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Шапка */
+        header {
+            height: 100vh;
+            background: linear-gradient(135deg, var(--dark-bg) 0%, var(--secondary) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            padding: 0 20px;
+        }
+
+        .header-content {
+            max-width: 800px;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 3.5rem;
+            margin: 0;
+            color: var(--accent);
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeInUp 1s 0.3s forwards;
+        }
+
+        .slogan {
+            font-size: 1.3rem;
+            margin: 20px 0 30px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s 0.6s forwards;
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s 0.9s forwards;
+        }
+
+        .cta-button:hover {
+            background-color: #b81c22;
+            transform: translateY(-3px);
+        }
+
+        /* Главное меню */
+        .main-nav {
+            position: sticky;
+            top: 0;
+            background-color: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(250, 227, 172, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1px;
+        }
+
+        .nav-item {
+            text-align: center;
+            background-color: rgba(250, 227, 172, 0.03);
+            transition: all 0.3s ease;
+        }
+
+        .nav-item:hover {
+            background-color: rgba(209, 33, 40, 0.1);
+        }
+
+        .nav-link {
+            display: block;
+            padding: 20px 10px;
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        /* Основной контент */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        section {
+            margin-bottom: 100px;
+        }
+
+        h2 {
+            font-weight: 700;
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        h3 {
+            font-size: 1.6rem;
+            color: var(--text-light);
+            margin: 40px 0 20px;
+            font-weight: 600;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+
+        /* Блок "О сайте" */
+        .about-section {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 60px;
+            margin-bottom: 80px;
+            border: 1px solid rgba(250, 227, 172, 0.1);
+        }
+
+        /* Навигационные блоки */
+        .nav-blocks {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+
+        .nav-block {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(250, 227, 172, 0.1);
+        }
+
+        .nav-block:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .nav-block-title {
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: var(--accent);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-block-icon {
+            margin-right: 10px;
+            color: var(--primary);
+        }
+
+        .nav-block-links {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0 0;
+        }
+
+        .nav-block-links li {
+            margin-bottom: 10px;
+        }
+
+        .nav-block-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: block;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(250, 227, 172, 0.1);
+        }
+
+        .nav-block-links a:hover {
+            color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        /* Футер */
+        footer {
+            background-color: var(--nav-bg);
+            padding: 60px 0 30px;
+            border-top: 1px solid rgba(250, 227, 172, 0.1);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.2rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 60px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2.5rem;
+            }
+
+            .slogan {
+                font-size: 1.1rem;
+            }
+
+            .nav-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-item {
+                border-bottom: 1px solid rgba(250, 227, 172, 0.1);
+            }
+
+            .about-section {
+                padding: 30px;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка -->
+    <header>
+        <div class="header-content">
+            <h1 class="logo">Мемы по-русски</h1>
+            <p class="slogan">Исследование цифрового фольклора и современной интернет-культуры</p>
+            <a href="#about" class="cta-button">Начать изучение</a>
+        </div>
+    </header>
+
+    <!-- Главное меню -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="nav-grid">
+                <div class="nav-item">
+                    <a href="#about" class="nav-link">О проекте</a>
+                </div>
+                <div class="nav-item">
+                    <a href="#history" class="nav-link">История</a>
+                </div>
+                <div class="nav-item">
+                    <a href="#types" class="nav-link">Типы мемов</a>
+                </div>
+                <div class="nav-item">
+                    <a href="#culture" class="nav-link">Культура</a>
+                </div>
+                <div class="nav-item">
+                    <a href="#gallery" class="nav-link">Галерея</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Основной контент -->
+    <div class="container">
+        <!-- О сайте -->
+        <section id="about" class="about-section">
+            <h2>О чём этот сайт?</h2>
+            <p>«Мемы по-русски» — это сайт, посвящённый изучению русскоязычного цифрового фольклора. Мы анализируем мемы как культурное явление, их эволюцию и влияние на современное общество.</p>
+            <p>Наш сайт поможет вам:</p>
+            <ul>
+                <li>Понять природу и историю мемов</li>
+                <li>Изучить особенности русскоязычного мемотворчества</li>
+                <li>Проследить эволюцию популярных мемов</li>
+                <li>Увидеть, как мемы влияют на язык и культуру</li>
+            </ul>
+        </section>
+
+        <!-- Навигационные блоки -->
+        <section class="nav-blocks">
+            <div class="nav-block">
+                <h3 class="nav-block-title"><span class="nav-block-icon">→</span> История мемов</h3>
+                <p>От первых интернет-мемов до современных сложных форматов.</p>
+                <ul class="nav-block-links">
+                    <li><a href="#early-memes">1996-2003: Первые мемы</a></li>
+                    <li><a href="#golden-age">2004-2009: Золотой век</a></li>
+                    <li><a href="#social-era">2010-2015: Эра соцсетей</a></li>
+                    <li><a href="#modern">2016-2023: Современность</a></li>
+                </ul>
+            </div>
+
+            <div class="nav-block">
+                <h3 class="nav-block-title"><span class="nav-block-icon">→</span> Русские мемы</h3>
+                <p>Особенности и уникальные черты русскоязычного мемплекса.</p>
+                <ul class="nav-block-links">
+                    <li><a href="#anonymous">Анонимное творчество</a></li>
+                    <li><a href="#soviet">Советское наследие</a></li>
+                    <li><a href="#humor">Особый юмор</a></li>
+                    <li><a href="#political">Политические мемы</a></li>
+                </ul>
+            </div>
+
+            <div class="nav-block">
+                <h3 class="nav-block-title"><span class="nav-block-icon">→</span> Исследования</h3>
+                <p>Анализ мемов как культурного и социального явления.</p>
+                <ul class="nav-block-links">
+                    <li><a href="#language">Язык мемов</a></li>
+                    <li><a href="#psychology">Психология восприятия</a></li>
+                    <li><a href="#propaganda">Мемы в пропаганде</a></li>
+                    <li><a href="#art">Мемы как искусство</a></li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Дополнительные разделы -->
+        <section id="history">
+            <h2>Почему мемы важны?</h2>
+            <p>Мемы давно перестали быть просто смешными картинками. Сегодня это:</p>
+            
+            <h3>1. Язык цифрового поколения</h3>
+            <p>Современный способ коммуникации, где одна картинка может заменить тысячу слов.</p>
+            
+            <h3>2. Культурный код</h3>
+            <p>Мемы передают ценности, страхи и надежды цифрового общества.</p>
+            
+            <h3>3. Социальное зеркало</h3>
+            <p>Через мемы общество осмысляет актуальные события и проблемы.</p>
+            
+            <h3>4. Инструмент влияния</h3>
+            <p>Мемы используются в политике, маркетинге и образовании.</p>
+        </section>
+    </div>
+
+    <!-- Футер -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-column">
+                <h3>Навигация</h3>
+                <ul class="footer-links">
+                    <li><a href="#about">О проекте</a></li>
+                    <li><a href="#history">История</a></li>
+                    <li><a href="#types">Типы мемов</a></li>
+                    <li><a href="#culture">Культура</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Исследования</h3>
+                <ul class="footer-links">
+                    <li><a href="#language">Язык мемов</a></li>
+                    <li><a href="#psychology">Психология</a></li>
+                    <li><a href="#propaganda">Пропаганда</a></li>
+                    <li><a href="#art">Искусство</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Ресурсы</h3>
+                <ul class="footer-links">
+                    <li><a href="#gallery">Галерея</a></li>
+                    <li><a href="#dictionary">Словарь</a></li>
+                    <li><a href="#timeline">Хронология</a></li>
+                    <li><a href="#archive">Архив</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Контакты</h3>
+                <ul class="footer-links">
+                    <li><a href="mailto:info@memy.ru">Email</a></li>
+                    <li><a href="#">Telegram</a></li>
+                    <li><a href="#">VK</a></li>
+                    <li><a href="#">YouTube</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            © 2023 Мемы по-русски | Все права на мемы принадлежат их создателям
+        </div>
+    </footer>
+
+    <script>
+        // Плавный скролл для ссылок
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
