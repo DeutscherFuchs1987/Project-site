@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>История мемов | Мемы по-русски</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #D12128;
+            --secondary: #01344F;
+            --accent: #FAE3AC;
+            --dark-bg: #0F1419;
+            --card-bg: #1A2026;
+            --nav-bg: #121920;
+            --text-light: #F0F3F6;
+            --text-muted: #8B98A8;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Шапка */
+        .page-header {
+            background: linear-gradient(135deg, var(--dark-bg) 0%, var(--secondary) 100%);
+            padding: 100px 20px;
+            text-align: center;
+            border-bottom: 1px solid rgba(250, 227, 172, 0.1);
+        }
+
+        .page-title {
+            font-weight: 700;
+            font-size: 3rem;
+            color: var(--accent);
+            margin: 0 0 20px;
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Главное меню */
+        .main-nav {
+            position: sticky;
+            top: 0;
+            background-color: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(250, 227, 172, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1px;
+        }
+
+        .nav-item {
+            text-align: center;
+            background-color: rgba(250, 227, 172, 0.03);
+            transition: all 0.3s ease;
+        }
+
+        .nav-item:hover {
+            background-color: rgba(209, 33, 40, 0.1);
+        }
+
+        .nav-link {
+            display: block;
+            padding: 20px 10px;
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        /* Основной контент */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        h2 {
+            font-weight: 700;
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin: 60px 0 30px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        h3 {
+            font-size: 1.6rem;
+            color: var(--text-light);
+            margin: 40px 0 20px;
+            font-weight: 600;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        /* Таймлайн */
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 60px auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            background: linear-gradient(to bottom, transparent, var(--primary), transparent);
+        }
+
+        .timeline-item {
+            padding: 0 40px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            padding-right: 80px;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-left: 80px;
+        }
+
+        .timeline-year {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .timeline-content {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(250, 227, 172, 0.1);
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::after {
+            content: '';
+            position: absolute;
+            right: -10px;
+            top: 30px;
+            width: 0;
+            height: 0;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-left: 10px solid var(--card-bg);
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::after {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 30px;
+            width: 0;
+            height: 0;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-right: 10px solid var(--card-bg);
+        }
+
+        /* Примеры мемов */
+        .meme-examples {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .meme-example {
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(250, 227, 172, 0.1);
+        }
+
+        .meme-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid rgba(250, 227, 172, 0.1);
+        }
+
+        .meme-caption {
+            padding: 15px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Навигационные карточки */
+        .nav-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+
+        .nav-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 25px;
+            border: 1px solid rgba(250, 227, 172, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .nav-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .nav-card-title {
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        /* Футер */
+        footer {
+            background-color: var(--nav-bg);
+            padding: 60px 0 30px;
+            border-top: 1px solid rgba(250, 227, 172, 0.1);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.2rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 60px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2.2rem;
+            }
+
+            .nav-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-item {
+                border-bottom: 1px solid rgba(250, 227, 172, 0.1);
+            }
+
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding: 0 0 40px 70px;
+                text-align: left !important;
+            }
+
+            .timeline-item:nth-child(odd) {
+                left: 0;
+                padding-right: 0;
+            }
+
+            .timeline-item:nth-child(even) {
+                left: 0;
+                padding-left: 70px;
+            }
+
+            .timeline-item:nth-child(odd) .timeline-content::after,
+            .timeline-item:nth-child(even) .timeline-content::after {
+                left: -10px;
+                border-right: 10px solid var(--card-bg);
+                border-left: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка страницы -->
+    <header class="page-header">
+        <h1 class="page-title">История мемов</h1>
+        <p class="page-subtitle">От первых вирусных изображений до сложных культурных феноменов — эволюция цифрового фольклора</p>
+    </header>
+
+    <!-- Главное меню -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="nav-grid">
+                <div class="nav-item">
+                    <a href="/" class="nav-link">Главная</a>
+                </div>
+                <div class="nav-item">
+                    <a href="history.html" class="nav-link">История</a>
+                </div>
+                <div class="nav-item">
+                    <a href="type.html" class="nav-link">Типы мемов</a>
+                </div>
+                <div class="nav-item">
+                    <a href="#evolution" class="nav-link">Культура</a>
+                </div>
+                <div class="nav-item">
+                    <a href="#gallery" class="nav-link">Галерея</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Основной контент -->
+    <div class="container">
+        <!-- Введение -->
+        <section>
+            <p>Мемы — это современная форма культурного обмена, цифровой аналог народного творчества. Их история отражает развитие интернета и меняющиеся способы коммуникации.</p>
+        </section>
+
+        <!-- Мировая история -->
+        <section id="world">
+            <h2>История мемов в мире</h2>
+            <p>Глобальная эволюция мемов прошла несколько ключевых этапов, каждый из которых соответствовал технологическим возможностям своего времени.</p>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">1976</div>
+                    <div class="timeline-content">
+                        <h3>Концепция мемов</h3>
+                        <p>Ричард Докинз в книге "Эгоистичный ген" впервые использовал термин "мем" для описания единиц культурной информации, которые передаются между людьми.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">1996</div>
+                    <div class="timeline-content">
+                        <h3>Первый вирусный мем</h3>
+                        <p>"Dancing Baby" — трёхмерная анимация танцующего младенца, распространявшаяся по электронной почте. Один из первых примеров интернет-мема.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">2001</div>
+                    <div class="timeline-content">
+                        <h3>"All Your Base"</h3>
+                        <p>Мем на основе плохого перевода японской видеоигры Zero Wing. Стал одним из первых примеров интернет-фольклора.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">2005</div>
+                    <div class="timeline-content">
+                        <h3>Эпоха 4chan</h3>
+                        <p>Популярность имиджборда 4chan приводит к появлению новых форматов: LOLcats, Advice Dog, Rage Comics.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">2010</div>
+                    <div class="timeline-content">
+                        <h3>Социальные сети</h3>
+                        <p>Facebook, Twitter и Reddit становятся основными платформами для распространения мемов. Появляются первые политические мемы.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">2016</div>
+                    <div class="timeline-content">
+                        <h3>Мемы в политике</h3>
+                        <p>Мемы становятся инструментом политической пропаганды во время президентских выборов в США.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">2020</div>
+                    <div class="timeline-content">
+                        <h3>TikTok-мемы</h3>
+                        <p>Короткие видеоформаты становятся доминирующим типом мемов. Появляются AR-мемы и глубокие фейки.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- История в России -->
+        <section id="russia">
+            <h2>История мемов в России</h2>
+            <p>Русскоязычный сегмент интернета создал уникальную мем-культуру, впитавшую национальные особенности и советское наследие.</p>
+
+            <h3>Ранний период (2000-2005)</h3>
+            <p>Первые русские мемы появляются на форумах и в ЖЖ. Примеры: "Превед медвед!", "Я у мамы дурачок". Основные черты — простота и абсурдизм.</p>
+
+            <div class="meme-examples">
+                <div class="meme-example">
+                    <img src="https://via.placeholder.com/400x200/1A2026/FAE3AC?text=Превед+медвед" alt="Превед медвед" class="meme-img">
+                    <div class="meme-caption">"Превед медвед!" (2006) — один из первых русских мемов</div>
+                </div>
+                <div class="meme-example">
+                    <img src="https://via.placeholder.com/400x200/1A2026/D12128?text=Я+у+мамы+дурачок" alt="Я у мамы дурачок" class="meme-img">
+                    <div class="meme-caption">"Я у мамы дурачок" — классика русского абсурда</div>
+                </div>
+            </div>
+
+            <h3>Золотой век Двача (2006-2012)</h3>
+            <p>Анонимные имиджборды становятся инкубаторами мемов. Появляются: "Олдфаги помнят", "Ты че такой дерзкий?", "Такова жизнь, сказал ёжик".</p>
+
+            <h3>Эра ВКонтакте (2012-2016)</h3>
+            <p>Социальные сети делают мемы массовыми. Популярность набирают: "Ну чо, как там в Майнкрафте?", "Дуров, дай списать!", "Кризис — время возможностей".</p>
+
+            <h3>Современный период (2017-н.в.)</h3>
+            <p>Мемы становятся сложнее, появляются нарративные форматы. Популярны: "Вжух и ты кот", "Нас здесь не стояло", мемы с советскими фильмами.</p>
+        </section>
+
+        <!-- Эволюция форматов -->
+        <section id="evolution">
+            <h2>Эволюция форматов</h2>
+            
+            <div class="nav-cards">
+                <div class="nav-card">
+                    <h3 class="nav-card-title">Текстовые мемы</h3>
+                    <p>Форумные посты, демотиваторы, фразы из чатов (2000-2005)</p>
+                </div>
+                <div class="nav-card">
+                    <h3 class="nav-card-title">Макросы</h3>
+                    <p>Изображения с подписями (LOLcats, Advice Animals) (2005-2010)</p>
+                </div>
+                <div class="nav-card">
+                    <h3 class="nav-card-title">Видеомемы</h3>
+                    <p>Harlem Shake, "Ты че такой дерзкий?" (2010-2015)</p>
+                </div>
+                <div class="nav-card">
+                    <h3 class="nav-card-title">Мемы-нарративы</h3>
+                    <p>Сложные истории, многочастные мемы (2015-н.в.)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Галерея -->
+        <section id="gallery">
+            <h2>Галерея исторических мемов</h2>
+            
+            <div class="meme-examples">
+                <div class="meme-example">
+                    <img src="https://via.placeholder.com/400x200/1A2026/FAE3AC?text=Dancing+Baby" alt="Dancing Baby" class="meme-img">
+                    <div class="meme-caption">Dancing Baby (1996) — первый вирусный мем</div>
+                </div>
+                <div class="meme-example">
+                    <img src="https://via.placeholder.com/400x200/1A2026/D12128?text=All+Your+Base" alt="All Your Base" class="meme-img">
+                    <div class="meme-caption">All Your Base Are Belong To Us (2001)</div>
+                </div>
+                <div class="meme-example">
+                    <img src="https://via.placeholder.com/400x200/1A2026/01344F?text=LOLcats" alt="LOLcats" class="meme-img">
+                    <div class="meme-caption">LOLcats (2005) — начало эры макросов</div>
+                </div>
+                <div class="meme-example">
+                    <img src="https://via.placeholder.com/400x200/1A2026/FAE3AC?text=Ну+чо+Майнкрафт" alt="Ну чо Майнкрафт" class="meme-img">
+                    <div class="meme-caption">"Ну чо, как там в Майнкрафте?" (2012)</div>
+                </div>
+                <div class="meme-example">
+                    <img src="https://via.placeholder.com/400x200/1A2026/D12128?text=Вжух+и+ты+кот" alt="Вжух и ты кот" class="meme-img">
+                    <div class="meme-caption">"Вжух и ты кот" (2018)</div>
+                </div>
+                <div class="meme-example">
+                    <img src="https://via.placeholder.com/400x200/1A2026/01344F?text=TikTok+мем" alt="TikTok мем" class="meme-img">
+                    <div class="meme-caption">Типичный TikTok-мем (2020)</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Футер -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-column">
+                <h3>Навигация</h3>
+                <ul class="footer-links">
+                    <li><a href="/">Главная</a></li>
+                    <li><a href="/history">История</a></li>
+                    <li><a href="/types">Типы мемов</a></li>
+                    <li><a href="/culture">Культура</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Контакты</h3>
+                <ul class="footer-links">
+                    <li><a href="#">О проекте</a></li>
+                    <li><a href="#">Команда</a></li>
+                    <li><a href="#">Для СМИ</a></li>
+                    <li><a href="#">Реклама</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            © 2023 Мемы по-русски | Исследование цифровой культуры
+        </div>
+    </footer>
+
+    <script>
+        // Плавный скролл для якорных ссылок
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

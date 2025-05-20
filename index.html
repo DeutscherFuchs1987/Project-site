@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мемы по-русски | Цифровая культура без засечек</title>
+    <title>Мемы по-русски | Исследование цифрового фольклора</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #D12128;  /* Ярко-красный */
             --secondary: #01344F; /* Глубокий синий */
             --accent: #FAE3AC;    /* Тёплый кремовый */
-            --dark-bg: #0F1419;   /* Тёмный фон */
+            --dark-bg: #0F1419;   /* Основной фон */
             --card-bg: #1A2026;   /* Фон карточек */
-            --text-light: #F0F3F6; /* Светлый текст */
-            --text-muted: #8B98A8; /* Приглушённый текст */
+            --nav-bg: #121920;    /* Фон навигации */
+            --text-light: #F0F3F6; /* Основной текст */
+            --text-muted: #8B98A8; /* Второстепенный текст */
         }
 
         body {
@@ -32,7 +33,7 @@
             scroll-behavior: smooth;
         }
 
-        /* Шапка с градиентом */
+        /* Шапка */
         header {
             height: 100vh;
             background: linear-gradient(135deg, var(--dark-bg) 0%, var(--secondary) 100%);
@@ -43,89 +44,94 @@
             text-align: center;
             position: relative;
             overflow: hidden;
+            padding: 0 20px;
+        }
+
+        .header-content {
+            max-width: 800px;
         }
 
         .logo {
             font-weight: 700;
-            font-size: 4rem;
+            font-size: 3.5rem;
             margin: 0;
             color: var(--accent);
             transform: translateY(20px);
             opacity: 0;
             animation: fadeInUp 1s 0.3s forwards;
-            letter-spacing: -0.05em;
         }
 
         .slogan {
-            font-size: 1.4rem;
-            margin-top: 20px;
-            max-width: 700px;
+            font-size: 1.3rem;
+            margin: 20px 0 30px;
             opacity: 0;
             transform: translateY(20px);
             animation: fadeInUp 1s 0.6s forwards;
             color: var(--text-light);
-            font-weight: 400;
             line-height: 1.5;
         }
 
-        .scroll-down {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: var(--accent);
-            font-size: 2rem;
-            animation: bounce 2s infinite;
-            cursor: pointer;
-            z-index: 2;
+        .cta-button {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s 0.9s forwards;
         }
 
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {transform: translateY(0) translateX(-50%);}
-            40% {transform: translateY(-20px) translateX(-50%);}
-            60% {transform: translateY(-10px) translateX(-50%);}
+        .cta-button:hover {
+            background-color: #b81c22;
+            transform: translateY(-3px);
         }
 
-        /* Минималистичное меню */
-        nav {
+        /* Главное меню */
+        .main-nav {
             position: sticky;
             top: 0;
-            background-color: rgba(15, 20, 25, 0.98);
+            background-color: var(--nav-bg);
             backdrop-filter: blur(10px);
             z-index: 1000;
-            transform: translateY(-100%);
-            animation: slideDown 0.8s 1.5s forwards;
-            border-bottom: 1px solid rgba(250, 227, 172, 0.08);
+            border-bottom: 1px solid rgba(250, 227, 172, 0.1);
         }
 
-        @keyframes slideDown {
-            to {transform: translateY(0);}
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            margin: 0;
-            padding: 0;
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1px;
         }
 
-        nav li {
-            position: relative;
+        .nav-item {
+            text-align: center;
+            background-color: rgba(250, 227, 172, 0.03);
+            transition: all 0.3s ease;
         }
 
-        nav a {
+        .nav-item:hover {
+            background-color: rgba(209, 33, 40, 0.1);
+        }
+
+        .nav-link {
+            display: block;
+            padding: 20px 10px;
             color: var(--text-light);
             text-decoration: none;
-            padding: 20px;
-            display: block;
             font-weight: 500;
             transition: all 0.3s ease;
-            font-size: 0.95rem;
-            letter-spacing: 0.02em;
         }
 
-        nav a:hover {
+        .nav-link:hover {
             color: var(--primary);
         }
 
@@ -138,30 +144,20 @@
 
         section {
             margin-bottom: 100px;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
-        }
-
-        section.visible {
-            opacity: 1;
-            transform: translateY(0);
         }
 
         h2 {
             font-weight: 700;
             font-size: 2.5rem;
             color: var(--accent);
-            position: relative;
             margin-bottom: 50px;
             text-align: center;
-            letter-spacing: -0.02em;
         }
 
         h3 {
             font-size: 1.6rem;
             color: var(--text-light);
-            margin-top: 40px;
+            margin: 40px 0 20px;
             font-weight: 600;
         }
 
@@ -170,268 +166,149 @@
             line-height: 1.7;
             margin-bottom: 20px;
             color: var(--text-light);
-            font-weight: 400;
         }
 
-        /* Карточки */
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 30px;
-            margin: 50px 0;
-        }
-
-        .card {
-            background: var(--card-bg);
+        /* Блок "О сайте" */
+        .about-section {
+            background-color: var(--card-bg);
             border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-            border: 1px solid rgba(250, 227, 172, 0.08);
+            padding: 60px;
+            margin-bottom: 80px;
+            border: 1px solid rgba(250, 227, 172, 0.1);
         }
 
-        .card:hover {
+        /* Навигационные блоки */
+        .nav-blocks {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+
+        .nav-block {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(250, 227, 172, 0.1);
+        }
+
+        .nav-block:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(209, 33, 40, 0.15);
-            border-color: rgba(250, 227, 172, 0.2);
+            border-color: var(--primary);
         }
 
-        .card-img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            border-bottom: 1px solid rgba(250, 227, 172, 0.08);
-        }
-
-        .card-content {
-            padding: 25px;
-        }
-
-        .card-title {
+        .nav-block-title {
             font-weight: 700;
             font-size: 1.4rem;
             color: var(--accent);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-block-icon {
+            margin-right: 10px;
+            color: var(--primary);
+        }
+
+        .nav-block-links {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0 0;
+        }
+
+        .nav-block-links li {
+            margin-bottom: 10px;
+        }
+
+        .nav-block-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: block;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(250, 227, 172, 0.1);
+        }
+
+        .nav-block-links a:hover {
+            color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        /* Футер */
+        footer {
+            background-color: var(--nav-bg);
+            padding: 60px 0 30px;
+            border-top: 1px solid rgba(250, 227, 172, 0.1);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.2rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
             margin-bottom: 12px;
         }
 
-        /* Таймлайн */
-        .timeline {
-            position: relative;
-            max-width: 800px;
-            margin: 50px auto;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 2px;
-            background: linear-gradient(to bottom, transparent, var(--primary), transparent);
-        }
-
-        .timeline-item {
-            padding: 20px 40px;
-            position: relative;
-            width: 50%;
-            box-sizing: border-box;
-            margin-bottom: 30px;
-        }
-
-        .timeline-item:nth-child(odd) {
-            left: 0;
-        }
-
-        .timeline-item:nth-child(even) {
-            left: 50%;
-        }
-
-        .timeline-content {
-            padding: 25px;
-            background: var(--card-bg);
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-            position: relative;
-            border: 1px solid rgba(250, 227, 172, 0.08);
-        }
-
-        .timeline-year {
-            font-weight: 700;
-            color: var(--primary);
-            font-size: 1.1rem;
-            margin-bottom: 10px;
-            letter-spacing: 0.02em;
-        }
-
-        /* Цитаты */
-        .quote {
-            font-size: 1.2rem;
-            line-height: 1.7;
-            color: var(--text-light);
-            padding: 30px;
-            margin: 40px 0;
-            border-left: 3px solid var(--primary);
-            background: rgba(209, 33, 40, 0.05);
-            font-style: italic;
-            position: relative;
-        }
-
-        .quote::before {
-            content: '"';
-            font-size: 4rem;
-            color: rgba(209, 33, 40, 0.1);
-            position: absolute;
-            top: 10px;
-            left: 10px;
-        }
-
-        .quote-author {
-            text-align: right;
-            font-weight: 600;
-            margin-top: 15px;
-            color: var(--accent);
-        }
-
-        /* Подвал */
-        footer {
-            background: linear-gradient(to top, #0A0F14, var(--dark-bg));
-            color: var(--text-light);
-            padding: 60px 0;
-            text-align: center;
-            position: relative;
-        }
-
-        footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--primary), transparent);
-            opacity: 0.3;
-        }
-
-        .footer-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .footer-logo {
-            font-weight: 700;
-            font-size: 2rem;
-            color: var(--accent);
-            margin-bottom: 20px;
-            letter-spacing: -0.02em;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin: 30px 0;
-        }
-
-        .social-link {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: rgba(250, 227, 172, 0.08);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
             transition: all 0.3s ease;
-            color: var(--accent);
         }
 
-        .social-link:hover {
-            background: var(--primary);
-            transform: translateY(-3px);
-            color: white;
+        .footer-links a:hover {
+            color: var(--primary);
         }
 
         .copyright {
-            opacity: 0.7;
-            font-size: 0.9rem;
-            margin-top: 30px;
+            text-align: center;
+            margin-top: 60px;
             color: var(--text-muted);
-        }
-
-        /* Кнопка наверх */
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 48px;
-            height: 48px;
-            background: var(--primary);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 999;
-            box-shadow: 0 5px 20px rgba(209, 33, 40, 0.3);
-            font-weight: 500;
-        }
-
-        .back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .back-to-top:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 8px 25px rgba(209, 33, 40, 0.4);
+            font-size: 0.9rem;
         }
 
         /* Адаптивность */
         @media (max-width: 768px) {
             .logo {
                 font-size: 2.5rem;
-                padding: 0 20px;
             }
 
             .slogan {
                 font-size: 1.1rem;
-                padding: 0 20px;
             }
 
-            nav ul {
-                flex-direction: column;
-                align-items: center;
+            .nav-grid {
+                grid-template-columns: 1fr;
             }
 
-            nav a {
-                padding: 15px;
+            .nav-item {
+                border-bottom: 1px solid rgba(250, 227, 172, 0.1);
+            }
+
+            .about-section {
+                padding: 30px;
             }
 
             h2 {
                 font-size: 2rem;
-            }
-
-            .card-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .timeline::before {
-                left: 30px;
-            }
-
-            .timeline-item {
-                width: 100%;
-                padding-left: 70px;
-                padding-right: 20px;
-            }
-
-            .timeline-item:nth-child(even) {
-                left: 0;
             }
         }
     </style>
@@ -439,201 +316,151 @@
 <body>
     <!-- Шапка -->
     <header>
-        <h1 class="logo">Мемы по-русски</h1>
-        <p class="slogan">Исследование цифрового фольклора через призму современного дизайна</p>
-        <div class="scroll-down">↓</div>
+        <div class="header-content">
+            <h1 class="logo">Мемы по-русски</h1>
+            <p class="slogan">Исследование цифрового фольклора и современной интернет-культуры</p>
+            <a href="#about" class="cta-button">Начать изучение</a>
+        </div>
     </header>
-    
-    <!-- Меню -->
-    <nav>
-        <ul>
-            <li><a href=".html">О мемах</a></li>
-            <li><a href="#evolution">Эволюция</a></li>
-            <li><a href="#culture">Культура</a></li>
-            <li><a href="#gallery">Галерея</a></li>
-            <li><a href="#impact">Влияние</a></li>
-            <li><a href="glav.html"></a>Glav</li>
-        </ul>
+
+    <!-- Главное меню -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="nav-grid">
+                <div class="nav-item">
+                    <a href="#about" class="nav-link">Главная</a>
+                </div>
+                <div class="nav-item">
+                    <a href="history.html" class="nav-link">История</a>
+                </div>
+                <div class="nav-item">
+                    <a href="#types" class="nav-link">Типы мемов</a>
+                </div>
+                <div class="nav-item">
+                    <a href="cultur.html" class="nav-link">Культура</a>
+                </div>
+                <div class="nav-item">
+                    <a href="#gallery" class="nav-link">Галерея</a>
+                </div>
+            </div>
+        </div>
     </nav>
-    
+
     <!-- Основной контент -->
     <div class="container">
-        <!-- Раздел 1 -->
-        <section id="about">
-            <h2>Феномен мемов</h2>
-            <p>Мемы стали языком цифрового поколения — формой коммуникации, которая сочетает визуальную выразительность, юмор и социальную рефлексию.</p>
-            
-            <div class="quote animate__animated animate__fadeIn">
-                "Мемы — это современный фольклор. Они рождаются в коллективном творчестве сети, живут собственной жизнью и отражают дух времени."
-                <div class="quote-author">— Исследователь цифровой культуры</div>
+        <!-- О сайте -->
+        <section id="about" class="about-section">
+            <h2>О чём этот сайт?</h2>
+            <p>«Мемы по-русски» — это сайт, посвящённый изучению русскоязычного цифрового фольклора. Мы анализируем мемы как культурное явление, их эволюцию и влияние на современное общество.</p>
+            <p>Наш сайт поможет вам:</p>
+            <ul>
+                <li>Понять природу и историю мемов</li>
+                <li>Изучить особенности русскоязычного мемотворчества</li>
+                <li>Проследить эволюцию популярных мемов</li>
+                <li>Увидеть, как мемы влияют на язык и культуру</li>
+            </ul>
+        </section>
+
+        <!-- Навигационные блоки -->
+        <section class="nav-blocks">
+            <div class="nav-block">
+                <h3 class="nav-block-title"><span class="nav-block-icon">→</span> История мемов</h3>
+                <p>От первых интернет-мемов до современных сложных форматов.</p>
+                <ul class="nav-block-links">
+                    <li><a href="#early-memes">1996-2003: Первые мемы</a></li>
+                    <li><a href="#golden-age">2004-2009: Золотой век</a></li>
+                    <li><a href="#social-era">2010-2015: Эра соцсетей</a></li>
+                    <li><a href="#modern">2016-2023: Современность</a></li>
+                </ul>
             </div>
-            
-            <div class="card-grid">
-                <div class="card">
-                    <img src="https://via.placeholder.com/400x250/1A2026/FAE3AC?text=Язык+интернета" alt="Язык интернета" class="card-img">
-                    <div class="card-content">
-                        <h3 class="card-title">Язык интернета</h3>
-                        <p>Современный способ коммуникации, где одна картинка заменяет тысячу слов.</p>
-                    </div>
-                </div>
-                
-                <div class="card">
-                    <img src="https://via.placeholder.com/400x250/1A2026/D12128?text=Культурный+код" alt="Культурный код" class="card-img">
-                    <div class="card-content">
-                        <h3 class="card-title">Культурный код</h3>
-                        <p>Мемы передают ценности, страхи и надежды цифрового поколения.</p>
-                    </div>
-                </div>
-                
-                <div class="card">
-                    <img src="https://via.placeholder.com/400x250/1A2026/01344F?text=Социальное+зеркало" alt="Социальное зеркало" class="card-img">
-                    <div class="card-content">
-                        <h3 class="card-title">Социальное зеркало</h3>
-                        <p>Через мемы общество осмысляет актуальные события и проблемы.</p>
-                    </div>
-                </div>
+
+            <div class="nav-block">
+                <h3 class="nav-block-title"><span class="nav-block-icon">→</span> Русские мемы</h3>
+                <p>Особенности и уникальные черты русскоязычного мемплекса.</p>
+                <ul class="nav-block-links">
+                    <li><a href="#anonymous">Анонимное творчество</a></li>
+                    <li><a href="#soviet">Советское наследие</a></li>
+                    <li><a href="#humor">Особый юмор</a></li>
+                    <li><a href="#political">Политические мемы</a></li>
+                </ul>
+            </div>
+
+            <div class="nav-block">
+                <h3 class="nav-block-title"><span class="nav-block-icon">→</span> Исследования</h3>
+                <p>Анализ мемов как культурного и социального явления.</p>
+                <ul class="nav-block-links">
+                    <li><a href="#language">Язык мемов</a></li>
+                    <li><a href="#psychology">Психология восприятия</a></li>
+                    <li><a href="#propaganda">Мемы в пропаганде</a></li>
+                    <li><a href="#art">Мемы как искусство</a></li>
+                </ul>
             </div>
         </section>
-        
-        <!-- Раздел 2 -->
-        <section id="evolution">
-            <h2>Эволюция мемов</h2>
-            <p>От простых картинок до сложных культурных феноменов — ключевые этапы развития:</p>
+
+        <!-- Дополнительные разделы -->
+        <section id="history">
+            <h2>Почему мемы важны?</h2>
+            <p>Мемы давно перестали быть просто смешными картинками. Сегодня это:</p>
             
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-year">1996-2003</div>
-                        <p>Эпоха первых интернет-мемов: "Dancing Baby", "All Your Base". Примитивные по современным меркам, но революционные для своего времени форматы.</p>
-                    </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-year">2004-2009</div>
-                        <p>Расцвет имиджборд (4chan, Двач). Появление "Lolcats", "Rickroll", первых русских мемов. Формирование интернет-субкультур.</p>
-                    </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-year">2010-2015</div>
-                        <p>Мемы выходят в мейнстрим благодаря соцсетям. Появление политических мемов и сложных нарративов.</p>
-                    </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-year">2016-2023</div>
-                        <p>Мемы как часть массовой культуры. AR-мемы, глубокие фейки, NFT. Инструмент пропаганды и самовыражения.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Раздел 3 -->
-        <section id="culture">
-            <h2>Русская мем-культура</h2>
-            <p>Уникальные особенности русскоязычного мемплекса:</p>
+            <h3>1. Язык цифрового поколения</h3>
+            <p>Современный способ коммуникации, где одна картинка может заменить тысячу слов.</p>
             
-            <div class="card-grid">
-                <div class="card">
-                    <img src="https://via.placeholder.com/400x250/1A2026/FAE3AC?text=Анонимное+творчество" alt="Анонимное творчество" class="card-img">
-                    <div class="card-content">
-                        <h3 class="card-title">Анонимное творчество</h3>
-                        <p>Двач и другие площадки, где важна идея, а не авторство. "Превед медвед", "Я у мамы дурачок".</p>
-                    </div>
-                </div>
-                
-                <div class="card">
-                    <img src="https://via.placeholder.com/400x250/1A2026/D12128?text=Советское+наследие" alt="Советское наследие" class="card-img">
-                    <div class="card-content">
-                        <h3 class="card-title">Советское наследие</h3>
-                        <p>Переосмысление советских фильмов и мультфильмов: "Ну чо, как там в Майнкрафте?", "Вжух и ты кот".</p>
-                    </div>
-                </div>
-                
-                <div class="card">
-                    <img src="https://via.placeholder.com/400x250/1A2026/01344F?text=Особый+юмор" alt="Особый юмор" class="card-img">
-                    <div class="card-content">
-                        <h3 class="card-title">Особый юмор</h3>
-                        <p>Специфический, иногда циничный стиль, отражающий национальный характер.</p>
-                    </div>
-                </div>
-            </div>
+            <h3>2. Культурный код</h3>
+            <p>Мемы передают ценности, страхи и надежды цифрового общества.</p>
+            
+            <h3>3. Социальное зеркало</h3>
+            <p>Через мемы общество осмысляет актуальные события и проблемы.</p>
+            
+            <h3>4. Инструмент влияния</h3>
+            <p>Мемы используются в политике, маркетинге и образовании.</p>
         </section>
     </div>
-    
-    <!-- Подвал -->
+
+    <!-- Футер -->
     <footer>
-        <div class="footer-content">
-            <div class="footer-logo">Мемы по-русски</div>
-            <p>Исследование цифрового фольклора и современной культуры</p>
-            
-            <div class="social-links">
-                <a href="#" class="social-link">VK</a>
-                <a href="#" class="social-link">TG</a>
-                <a href="#" class="social-link">YT</a>
+        <div class="footer-grid">
+            <div class="footer-column">
+                <h3>Навигация</h3>
+                <ul class="footer-links">
+                    <li><a href="#about">Главная</a></li>
+                    <li><a href="#history">История</a></li>
+                    <li><a href="type.html">Типы мемов</a></li>
+                    <li><a href="#culture">Культура</a></li>
+                </ul>
             </div>
             
-            <p class="copyright">© 2023 Все права на мемы принадлежат их создателям</p>
+            <div class="footer-column">
+                <h3>Контакты</h3>
+                <ul class="footer-links">
+                    <li><a href="mailto:info@memy.ru">Email</a></li>
+                    <li><a href="#">Telegram</a></li>
+                    <li><a href="#">VK</a></li>
+                    <li><a href="#">YouTube</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            © 2023 Мемы по-русски | Все права на мемы принадлежат их создателям
         </div>
     </footer>
-    
-    <!-- Кнопка "Наверх" -->
-    <div class="back-to-top">↑</div>
-    
+
     <script>
-        // Анимация появления секций при скролле
-        const sections = document.querySelectorAll('section');
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, {threshold: 0.1});
-        
-        sections.forEach(section => {
-            observer.observe(section);
-        });
-        
-        // Кнопка "Наверх"
-        const backToTop = document.querySelector('.back-to-top');
-        
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTop.classList.add('visible');
-            } else {
-                backToTop.classList.remove('visible');
-            }
-        });
-        
-        backToTop.addEventListener('click', () => {
-            window.scrollTo({top: 0, behavior: 'smooth'});
-        });
-        
         // Плавный скролл для ссылок
-        document.querySelectorAll('nav a').forEach(anchor => {
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 
                 const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
+                if (targetId === '#') return;
                 
-                window.scrollTo({
-                    top: targetElement.offsetTop - 80,
-                    behavior: 'smooth'
-                });
-            });
-        });
-        
-        // Скролл вниз по клику на стрелку
-        document.querySelector('.scroll-down').addEventListener('click', () => {
-            window.scrollTo({
-                top: document.querySelector('#about').offsetTop - 80,
-                behavior: 'smooth'
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
             });
         });
     </script>

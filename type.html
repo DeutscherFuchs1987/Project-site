@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Типы мемов | Мемы по-русски</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #D12128;
+            --secondary: #01344F;
+            --accent: #FAE3AC;
+            --dark-bg: #0F1419;
+            --card-bg: #1A2026;
+            --nav-bg: #121920;
+            --text-light: #F0F3F6;
+            --text-muted: #8B98A8;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Шапка страницы */
+        .page-header {
+            background: linear-gradient(135deg, var(--dark-bg) 0%, var(--secondary) 100%);
+            padding: 100px 20px;
+            text-align: center;
+            border-bottom: 1px solid rgba(250, 227, 172, 0.1);
+        }
+
+        .page-title {
+            font-weight: 700;
+            font-size: 3rem;
+            color: var(--accent);
+            margin: 0 0 20px;
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Главное меню */
+        .main-nav {
+            position: sticky;
+            top: 0;
+            background-color: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(250, 227, 172, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1px;
+        }
+
+        .nav-item {
+            text-align: center;
+            background-color: rgba(250, 227, 172, 0.03);
+            transition: all 0.3s ease;
+        }
+
+        .nav-item:hover {
+            background-color: rgba(209, 33, 40, 0.1);
+        }
+
+        .nav-link {
+            display: block;
+            padding: 20px 10px;
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        /* Основной контент */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        h2 {
+            font-weight: 700;
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin: 60px 0 30px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        h3 {
+            font-size: 1.6rem;
+            color: var(--text-light);
+            margin: 40px 0 20px;
+            font-weight: 600;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        /* Карточки типов мемов */
+        .meme-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+
+        .meme-type {
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(250, 227, 172, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .meme-type:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 20px rgba(209, 33, 40, 0.1);
+        }
+
+        .meme-type-header {
+            padding: 20px;
+            background: rgba(250, 227, 172, 0.05);
+            border-bottom: 1px solid rgba(250, 227, 172, 0.1);
+        }
+
+        .meme-type-title {
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: var(--accent);
+            margin: 0;
+        }
+
+        .meme-type-subtitle {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin: 5px 0 0;
+        }
+
+        .meme-type-content {
+            padding: 20px;
+        }
+
+        .meme-type-examples {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .meme-example {
+            background: rgba(250, 227, 172, 0.03);
+            border-radius: 4px;
+            padding: 10px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(250, 227, 172, 0.05);
+        }
+
+        .meme-example:hover {
+            border-color: var(--primary);
+        }
+
+        /* Классификация */
+        .classification {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+
+        .classification-item {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 25px;
+            border: 1px solid rgba(250, 227, 172, 0.1);
+        }
+
+        .classification-title {
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        /* Футер */
+        footer {
+            background-color: var(--nav-bg);
+            padding: 60px 0 30px;
+            border-top: 1px solid rgba(250, 227, 172, 0.1);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.2rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 60px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2.2rem;
+            }
+
+            .nav-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-item {
+                border-bottom: 1px solid rgba(250, 227, 172, 0.1);
+            }
+
+            .meme-types {
+                grid-template-columns: 1fr;
+            }
+
+            .meme-type-examples {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка страницы -->
+    <header class="page-header">
+        <h1 class="page-title">Типы мемов</h1>
+        <p class="page-subtitle">Классификация и примеры различных форматов цифрового фольклора</p>
+    </header>
+
+    <!-- Главное меню -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="nav-grid">
+                <div class="nav-item">
+                    <a href="#about" class="nav-link">Главная</a>
+                </div>
+                <div class="nav-item">
+                    <a href="history.html" class="nav-link">История</a>
+                </div>
+                <div class="nav-item">
+                    <a href="#types" class="nav-link">Типы мемов</a>
+                </div>
+                <div class="nav-item">
+                    <a href="#culture" class="nav-link">Культура</a>
+                </div>
+                <div class="nav-item">
+                    <a href="#gallery" class="nav-link">Галерея</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Основной контент -->
+    <div class="container">
+        <!-- Введение -->
+        <section>
+            <p>Мемы существуют в самых разных формах — от простых изображений с текстом до сложных видеоформатов. Эта классификация поможет разобраться в многообразии цифрового фольклора.</p>
+        </section>
+
+        <!-- Основные форматы -->
+        <section id="formats">
+            <h2>Основные форматы мемов</h2>
+            <p>Мемы можно разделить по типу контента и способу передачи информации:</p>
+
+            <div class="meme-types">
+                <!-- Изображения -->
+                <div class="meme-type">
+                    <div class="meme-type-header">
+                        <h3 class="meme-type-title">Изображения</h3>
+                        <p class="meme-type-subtitle">Самый распространённый тип</p>
+                    </div>
+                    <div class="meme-type-content">
+                        <p>Статичные картинки с текстом или без. Часто используют узнаваемые шаблоны.</p>
+                        <div class="meme-type-examples">
+                            <div class="meme-example">Макросы (LOLcats)</div>
+                            <div class="meme-example">Демотиваторы</div>
+                            <div class="meme-example">Фотожабы</div>
+                            <div class="meme-example">Шаблонные мемы</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Видео -->
+                <div class="meme-type">
+                    <div class="meme-type-header">
+                        <h3 class="meme-type-title">Видео</h3>
+                        <p class="meme-type-subtitle">Динамичные форматы</p>
+                    </div>
+                    <div class="meme-type-content">
+                        <p>Короткие видео с повторяющимися сценами, монтажом или субтитрами.</p>
+                        <div class="meme-type-examples">
+                            <div class="meme-example">Вирусные ролики</div>
+                            <div class="meme-example">TikTok-мемы</div>
+                            <div class="meme-example">Повторяющиеся сцены</div>
+                            <div class="meme-example">Deepfake-мемы</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Текст -->
+                <div class="meme-type">
+                    <div class="meme-type-header">
+                        <h3 class="meme-type-title">Текстовые</h3>
+                        <p class="meme-type-subtitle">Фольклор интернета</p>
+                    </div>
+                    <div class="meme-type-content">
+                        <p>Фразы, копипасты, истории и другие текстовые форматы.</p>
+                        <div class="meme-type-examples">
+                            <div class="meme-example">Копипасты</div>
+                            <div class="meme-example">Кричалки</div>
+                            <div class="meme-example">Паста</div>
+                            <div class="meme-example">Флеймы</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Аудио -->
+                <div class="meme-type">
+                    <div class="meme-type-header">
+                        <h3 class="meme-type-title">Аудио</h3>
+                        <p class="meme-type-subtitle">Узнаваемые звуки</p>
+                    </div>
+                    <div class="meme-type-content">
+                        <p>Звуковые дорожки, которые стали мемами сами по себе.</p>
+                        <div class="meme-type-examples">
+                            <div class="meme-example">Звуковые эффекты</div>
+                            <div class="meme-example">Фразы из игр/фильмов</div>
+                            <div class="meme-example">Автотюн-мемы</div>
+                            <div class="meme-example">Ремиксы</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Интерактивные -->
+                <div class="meme-type">
+                    <div class="meme-type-header">
+                        <h3 class="meme-type-title">Интерактивные</h3>
+                        <p class="meme-type-subtitle">Современные форматы</p>
+                    </div>
+                    <div class="meme-type-content">
+                        <p>Мемы, требующие участия пользователя.</p>
+                        <div class="meme-type-examples">
+                            <div class="meme-example">AR-мемы</div>
+                            <div class="meme-example">Интерактивные видео</div>
+                            <div class="meme-example">Мем-игры</div>
+                            <div class="meme-example">Генераторы мемов</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Нарративные -->
+                <div class="meme-type">
+                    <div class="meme-type-header">
+                        <h3 class="meme-type-title">Нарративные</h3>
+                        <p class="meme-type-subtitle">Сложные истории</p>
+                    </div>
+                    <div class="meme-type-content">
+                        <p>Многослойные мемы с развитием сюжета.</p>
+                        <div class="meme-type-examples">
+                            <div class="meme-example">Мем-персонажи</div>
+                            <div class="meme-example">Многочастные мемы</div>
+                            <div class="meme-example">Фандомные мемы</div>
+                            <div class="meme-example">Мета-мемы</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Классификация по содержанию -->
+        <section id="classification">
+            <h2>Классификация по содержанию</h2>
+            <p>Мемы можно разделить на категории по типу контента и посыла:</p>
+
+            <div class="classification">
+                <div class="classification-item">
+                    <h3 class="classification-title">Абсурдные</h3>
+                    <p>Не несут смысла, основаны на алогичном юморе. Примеры: "Я у мамы дурачок", "Сова говорит".</p>
+                </div>
+
+                <div class="classification-item">
+                    <h3 class="classification-title">Реакционные</h3>
+                    <p>Выражают эмоциональную реакцию. Примеры: Rage Comics, "Олдфаги помнят".</p>
+                </div>
+
+                <div class="classification-item">
+                    <h3 class="classification-title">Социальные</h3>
+                    <p>Комментируют общественные явления. Примеры: "Кризис — время возможностей", "Нас здесь не стояло".</p>
+                </div>
+
+                <div class="classification-item">
+                    <h3 class="classification-title">Политические</h3>
+                    <p>Используются в политической дискуссии. Примеры: мемы с политиками, пропагандистские мемы.</p>
+                </div>
+
+                <div class="classification-item">
+                    <h3 class="classification-title">Ностальгические</h3>
+                    <p>Обращаются к прошлому. Примеры: мемы с советскими мультфильмами, "Олдскульные игры".</p>
+                </div>
+
+                <div class="classification-item">
+                    <h3 class="classification-title">Фандомные</h3>
+                    <p>Связаны с популярными медиа. Примеры: мемы по "Игре престолов", "Гарри Поттеру".</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Примеры популярных мемов -->
+        <section id="examples">
+            <h2>Примеры популярных мемов</h2>
+
+            <div class="meme-types">
+                <!-- Макросы -->
+                <div class="meme-type">
+                    <div class="meme-type-header">
+                        <h3 class="meme-type-title">Макросы</h3>
+                        <p class="meme-type-subtitle">Изображения + текст</p>
+                    </div>
+                    <div class="meme-type-content">
+                        <p>Классические мемы с шаблонными изображениями и подписями.</p>
+                        <div class="meme-type-examples">
+                            <div class="meme-example">"Превед медвед"</div>
+                            <div class="meme-example">"Серьёзный кот"</div>
+                            <div class="meme-example">"Упоротая лиса"</div>
+                            <div class="meme-example">"Дуров, дай списать"</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Вирусные видео -->
+                <div class="meme-type">
+                    <div class="meme-type-header">
+                        <h3 class="meme-type-title">Вирусные видео</h3>
+                        <p class="meme-type-subtitle">Узнаваемые ролики</p>
+                    </div>
+                    <div class="meme-type-content">
+                        <p>Короткие видео, ставшие основой для ремиксов.</p>
+                        <div class="meme-type-examples">
+                            <div class="meme-example">"Ты че такой дерзкий"</div>
+                            <div class="meme-example">"Вжух и ты кот"</div>
+                            <div class="meme-example">"Ну чо, как там в Майнкрафте"</div>
+                            <div class="meme-example">"Это провал"</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Текстовые шаблоны -->
+                <div class="meme-type">
+                    <div class="meme-type-header">
+                        <h3 class="meme-type-title">Текстовые шаблоны</h3>
+                        <p class="meme-type-subtitle">Фразы для адаптации</p>
+                    </div>
+                    <div class="meme-type-content">
+                        <p>Узнаваемые текстовые структуры, которые заполняют новым содержанием.</p>
+                        <div class="meme-type-examples">
+                            <div class="meme-example">"Один день из жизни..."</div>
+                            <div class="meme-example">"Когда..., но..."</div>
+                            <div class="meme-example">"Никто: ... Я:"</div>
+                            <div class="meme-example">"Какой ты..., такой ты..."</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Футер -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-column">
+                <h3>Навигация</h3>
+                <ul class="footer-links">
+                    <li><a href="/">Главная</a></li>
+                    <li><a href="/history">История</a></li>
+                    <li><a href="/types">Типы мемов</a></li>
+                    <li><a href="/culture">Культура</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Контакты</h3>
+                <ul class="footer-links">
+                    <li><a href="#">О проекте</a></li>
+                    <li><a href="#">Команда</a></li>
+                    <li><a href="#">Для СМИ</a></li>
+                    <li><a href="#">Реклама</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            © 2023 Мемы по-русски | Исследование цифровой культуры
+        </div>
+    </footer>
+
+    <script>
+        // Плавный скролл для якорных ссылок
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
