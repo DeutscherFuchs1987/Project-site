@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Галерея мемов | Мемы по-русски</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #D12128;
+            --secondary: #01344F;
+            --accent: #FAE3AC;
+            --dark-bg: #0F1419;
+            --card-bg: #1A2026;
+            --nav-bg: #121920;
+            --text-light: #F0F3F6;
+            --text-muted: #8B98A8;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Шапка страницы */
+        .page-header {
+            background: linear-gradient(135deg, var(--dark-bg) 0%, var(--secondary) 100%);
+            padding: 100px 20px;
+            text-align: center;
+            border-bottom: 1px solid rgba(250, 227, 172, 0.1);
+        }
+
+        .page-title {
+            font-weight: 700;
+            font-size: 3rem;
+            color: var(--accent);
+            margin: 0 0 20px;
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Главное меню */
+        .main-nav {
+            position: sticky;
+            top: 0;
+            background-color: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(250, 227, 172, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1px;
+        }
+
+        .nav-item {
+            text-align: center;
+            background-color: rgba(250, 227, 172, 0.03);
+            transition: all 0.3s ease;
+        }
+
+        .nav-item:hover {
+            background-color: rgba(209, 33, 40, 0.1);
+        }
+
+        .nav-link {
+            display: block;
+            padding: 20px 10px;
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        /* Основной контент */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        h2 {
+            font-weight: 700;
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin: 60px 0 30px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        /* Фильтры галереи */
+        .gallery-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 30px 0;
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            background: var(--card-bg);
+            border: 1px solid rgba(250, 227, 172, 0.1);
+            color: var(--text-light);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Галерея */
+        .meme-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .meme-item {
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(250, 227, 172, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .meme-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 20px rgba(209, 33, 40, 0.1);
+        }
+
+        .meme-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .meme-info {
+            padding: 20px;
+        }
+
+        .meme-title {
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .meme-meta {
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .meme-year {
+            color: var(--primary);
+        }
+
+        /* Кнопка "Показать еще" */
+        .load-more {
+            display: block;
+            width: 200px;
+            margin: 40px auto;
+            padding: 12px 0;
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .load-more:hover {
+            background: #b81c22;
+            transform: translateY(-3px);
+        }
+
+        /* Футер */
+        footer {
+            background-color: var(--nav-bg);
+            padding: 60px 0 30px;
+            border-top: 1px solid rgba(250, 227, 172, 0.1);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.2rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 60px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2.2rem;
+            }
+
+            .nav-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-item {
+                border-bottom: 1px solid rgba(250, 227, 172, 0.1);
+            }
+
+            .meme-gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка страницы -->
+    <header class="page-header">
+        <h1 class="page-title">Галерея мемов</h1>
+        <p class="page-subtitle">Коллекция самых известных и значимых мемов русскоязычного интернета</p>
+    </header>
+
+    <!-- Главное меню -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="nav-grid">
+                <div class="nav-item">
+                    <a href="#about" class="nav-link">Главная</a>
+                </div>
+                <div class="nav-item">
+                    <a href="history.html" class="nav-link">История</a>
+                </div>
+                <div class="nav-item">
+                    <a href="#types" class="nav-link">Типы мемов</a>
+                </div>
+                <div class="nav-item">
+                    <a href="cultur.html" class="nav-link">Культура</a>
+                </div>
+                <div class="nav-item">
+                    <a href="gallery.html" class="nav-link">Галерея</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Основной контент -->
+    <div class="container">
+        <!-- Фильтры -->
+        <div class="gallery-filters">
+            <button class="filter-btn active" data-filter="all">Все</button>
+            <button class="filter-btn" data-filter="classic">Классика</button>
+            <button class="filter-btn" data-filter="modern">Современные</button>
+            <button class="filter-btn" data-filter="image">Изображения</button>
+            <button class="filter-btn" data-filter="video">Видео</button>
+            <button class="filter-btn" data-filter="text">Текстовые</button>
+            <button class="filter-btn" data-filter="absurd">Абсурд</button>
+            <button class="filter-btn" data-filter="political">Политика</button>
+        </div>
+
+        <!-- Галерея -->
+        <div class="meme-gallery">
+            <!-- Классические мемы -->
+            <div class="meme-item" data-category="classic image absurd">
+                <img src="https://via.placeholder.com/400x300/1A2026/FAE3AC?text=Превед+медвед" alt="Превед медвед" class="meme-img">
+                <div class="meme-info">
+                    <h3 class="meme-title">Превед медвед!</h3>
+                    <div class="meme-meta">
+                        <span class="meme-year">2006</span>
+                        <span>Классика</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="meme-item" data-category="classic image absurd">
+                <img src="https://via.placeholder.com/400x300/1A2026/D12128?text=Я+у+мамы+дурачок" alt="Я у мамы дурачок" class="meme-img">
+                <div class="meme-info">
+                    <h3 class="meme-title">Я у мамы дурачок</h3>
+                    <div class="meme-meta">
+                        <span class="meme-year">2007</span>
+                        <span>Классика</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="meme-item" data-category="classic image">
+                <img src="https://via.placeholder.com/400x300/1A2026/01344F?text=Серьёзный+кот" alt="Серьёзный кот" class="meme-img">
+                <div class="meme-info">
+                    <h3 class="meme-title">Серьёзный кот</h3>
+                    <div class="meme-meta">
+                        <span class="meme-year">2008</span>
+                        <span>Классика</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Современные мемы -->
+            <div class="meme-item" data-category="modern video">
+                <img src="https://via.placeholder.com/400x300/1A2026/FAE3AC?text=Вжух+и+ты+кот" alt="Вжух и ты кот" class="meme-img">
+                <div class="meme-info">
+                    <h3 class="meme-title">Вжух и ты кот</h3>
+                    <div class="meme-meta">
+                        <span class="meme-year">2018</span>
+                        <span>Видео</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="meme-item" data-category="modern image political">
+                <img src="https://via.placeholder.com/400x300/1A2026/D12128?text=Нас+здесь+не+стояло" alt="Нас здесь не стояло" class="meme-img">
+                <div class="meme-info">
+                    <h3 class="meme-title">Нас здесь не стояло</h3>
+                    <div class="meme-meta">
+                        <span class="meme-year">2020</span>
+                        <span>Политика</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="meme-item" data-category="modern text">
+                <img src="https://via.placeholder.com/400x300/1A2026/01344F?text=Ну+чо+Майнкрафт" alt="Ну чо Майнкрафт" class="meme-img">
+                <div class="meme-info">
+                    <h3 class="meme-title">Ну чо, как там в Майнкрафте</h3>
+                    <div class="meme-meta">
+                        <span class="meme-year">2012</span>
+                        <span>Текст</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Дополнительные примеры -->
+            <div class="meme-item" data-category="classic image">
+                <img src="https://via.placeholder.com/400x300/1A2026/FAE3AC?text=Дуров+дай+списать" alt="Дуров дай списать" class="meme-img">
+                <div class="meme-info">
+                    <h3 class="meme-title">Дуров, дай списать</h3>
+                    <div class="meme-meta">
+                        <span class="meme-year">2011</span>
+                        <span>Классика</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="meme-item" data-category="modern video absurd">
+                <img src="https://via.placeholder.com/400x300/1A2026/D12128?text=Ты+че+такой+дерзкий" alt="Ты че такой дерзкий" class="meme-img">
+                <div class="meme-info">
+                    <h3 class="meme-title">Ты че такой дерзкий</h3>
+                    <div class="meme-meta">
+                        <span class="meme-year">2016</span>
+                        <span>Видео</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="meme-item" data-category="modern image political">
+                <img src="https://via.placeholder.com/400x300/1A2026/01344F?text=Кризис+время+возможностей" alt="Кризис - время возможностей" class="meme-img">
+                <div class="meme-info">
+                    <h3 class="meme-title">Кризис — время возможностей</h3>
+                    <div class="meme-meta">
+                        <span class="meme-year">2014</span>
+                        <span>Политика</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Разделы галереи -->
+        <section id="classic">
+            <h2>Классика жанра</h2>
+            <p>Мемы, которые стали основой русскоязычного интернет-фольклора и не теряют актуальности годами.</p>
+
+            <div class="meme-gallery">
+                <div class="meme-item">
+                    <img src="https://via.placeholder.com/400x300/1A2026/FAE3AC?text=Олдфаги+помнят" alt="Олдфаги помнят" class="meme-img">
+                    <div class="meme-info">
+                        <h3 class="meme-title">Олдфаги помнят</h3>
+                        <div class="meme-meta">
+                            <span class="meme-year">2009</span>
+                            <span>Классика</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="meme-item">
+                    <img src="https://via.placeholder.com/400x300/1A2026/D12128?text=Такова+жизнь" alt="Такова жизнь, сказал ёжик" class="meme-img">
+                    <div class="meme-info">
+                        <h3 class="meme-title">Такова жизнь, сказал ёжик</h3>
+                        <div class="meme-meta">
+                            <span class="meme-year">2010</span>
+                            <span>Классика</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="meme-item">
+                    <img src="https://via.placeholder.com/400x300/1A2026/01344F?text=Упоротая+лиса" alt="Упоротая лиса" class="meme-img">
+                    <div class="meme-info">
+                        <h3 class="meme-title">Упоротая лиса</h3>
+                        <div class="meme-meta">
+                            <span class="meme-year">2011</span>
+                            <span>Классика</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="modern">
+            <h2>Современные хиты</h2>
+            <p>Актуальные мемы, которые определяют лицо сегодняшнего интернет-фольклора.</p>
+
+            <div class="meme-gallery">
+                <div class="meme-item">
+                    <img src="https://via.placeholder.com/400x300/1A2026/FAE3AC?text=Это+провал" alt="Это провал" class="meme-img">
+                    <div class="meme-info">
+                        <h3 class="meme-title">Это провал</h3>
+                        <div class="meme-meta">
+                            <span class="meme-year">2019</span>
+                            <span>Видео</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="meme-item">
+                    <img src="https://via.placeholder.com/400x300/1A2026/D12128?text=Мем+с+советским+фильмом" alt="Мем с советским фильмом" class="meme-img">
+                    <div class="meme-info">
+                        <h3 class="meme-title">Советские фильмы в мемах</h3>
+                        <div class="meme-meta">
+                            <span class="meme-year">2021</span>
+                            <span>Ностальгия</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="meme-item">
+                    <img src="https://via.placeholder.com/400x300/1A2026/01344F?text=TikTok+мем" alt="TikTok мем" class="meme-img">
+                    <div class="meme-info">
+                        <h3 class="meme-title">Типичный TikTok-мем</h3>
+                        <div class="meme-meta">
+                            <span class="meme-year">2022</span>
+                            <span>Видео</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Футер -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-column">
+                <h3>Разделы</h3>
+                <ul class="footer-links">
+                    <li><a href="/">Главная</a></li>
+                    <li><a href="/history">История</a></li>
+                    <li><a href="/types">Типы мемов</a></li>
+                    <li><a href="/culture">Культура</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Галерея</h3>
+                <ul class="footer-links">
+                    <li><a href="#classic">Классика</a></li>
+                    <li><a href="#modern">Современные</a></li>
+                    <li><a href="#top">Топ-100</a></li>
+                    <li><a href="#random">Случайный мем</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Ресурсы</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Архив мемов</a></li>
+                    <li><a href="#">Мем-генератор</a></li>
+                    <li><a href="#">Исследования</a></li>
+                    <li><a href="#">API</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Контакты</h3>
+                <ul class="footer-links">
+                    <li><a href="#">О проекте</a></li>
+                    <li><a href="#">Команда</a></li>
+                    <li><a href="#">Для СМИ</a></li>
+                    <li><a href="#">Реклама</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            © 2023 Мемы по-русски | Коллекция цифрового фольклора
+        </div>
+    </footer>
+
+    <script>
+        // Фильтрация мемов
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const memeItems = document.querySelectorAll('.meme-item');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Удаляем активный класс у всех кнопок
+                filterBtns.forEach(b => b.classList.remove('active'));
+                // Добавляем активный класс текущей кнопке
+                btn.classList.add('active');
+                
+                const filter = btn.dataset.filter;
+                
+                memeItems.forEach(item => {
+                    if (filter === 'all' || item.dataset.category.includes(filter)) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Кнопка "Показать еще"
+        document.querySelector('.load-more').addEventListener('click', () => {
+            alert('Загружаем больше мемов...');
+            // Здесь может быть код для подгрузки дополнительных мемов
+        });
+
+        // Плавный скролл для якорных ссылок
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
