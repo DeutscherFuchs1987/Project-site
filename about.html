@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>О разработчиках | Мемы по-русски</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #D12128;
+            --secondary: #01344F;
+            --accent: #FAE3AC;
+            --dark-bg: #0F1419;
+            --card-bg: #1A2026;
+            --nav-bg: #121920;
+            --text-light: #F0F3F6;
+            --text-muted: #8B98A8;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Шапка */
+        .page-header {
+            background: linear-gradient(135deg, var(--dark-bg) 0%, var(--secondary) 100%);
+            padding: 100px 20px;
+            text-align: center;
+            border-bottom: 1px solid rgba(250, 227, 172, 0.1);
+        }
+
+        .page-title {
+            font-weight: 700;
+            font-size: 3rem;
+            color: var(--accent);
+            margin: 0 0 20px;
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Главное меню */
+        .main-nav {
+            position: sticky;
+            top: 0;
+            background-color: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(250, 227, 172, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1px;
+        }
+
+        .nav-item {
+            text-align: center;
+            background-color: rgba(250, 227, 172, 0.03);
+            transition: all 0.3s ease;
+        }
+
+        .nav-item:hover {
+            background-color: rgba(209, 33, 40, 0.1);
+        }
+
+        .nav-link {
+            display: block;
+            padding: 20px 10px;
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        /* Основной контент */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        h2 {
+            font-weight: 700;
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin: 60px 0 30px;
+            position: relative;
+            padding-bottom: 15px;
+            text-align: center;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        h3 {
+            font-size: 1.6rem;
+            color: var(--text-light);
+            margin: 40px 0 20px;
+            font-weight: 600;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        /* Слайдер разработчиков */
+        .dev-slider {
+            position: relative;
+            max-width: 900px;
+            margin: 60px auto;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .slider-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .dev-slide {
+            min-width: 100%;
+            padding: 40px;
+            background: var(--card-bg);
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .dev-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--primary);
+            margin: 0 auto 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .dev-name {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .dev-role {
+            color: var(--primary);
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .dev-bio {
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        .dev-skills {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .skill-tag {
+            background: rgba(209, 33, 40, 0.2);
+            color: var(--primary);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .slider-nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--text-muted);
+            margin: 0 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .slider-dot.active {
+            background: var(--primary);
+            transform: scale(1.2);
+        }
+
+        /* Комментарии - теперь в одном месте */
+        .comments-container {
+            position: relative;
+            max-width: 800px;
+            margin: 40px auto;
+            min-height: 200px;
+        }
+
+        .dev-comment {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px;
+            background: var(--card-bg);
+            border-radius: 10px;
+            border: 1px solid rgba(250, 227, 172, 0.1);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+            box-sizing: border-box;
+        }
+
+        .dev-comment.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .comment-title {
+            font-size: 1.3rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .comment-text {
+            font-style: italic;
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .comment-text::before {
+            content: '"';
+            position: absolute;
+            left: 0;
+            top: -10px;
+            font-size: 3rem;
+            color: var(--primary);
+            opacity: 0.3;
+            font-family: serif;
+        }
+
+        /* Команда проекта */
+        .team-section {
+            margin-top: 100px;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .team-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid rgba(250, 227, 172, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            border-color: var(--primary);
+        }
+
+        .team-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 20px;
+            border: 4px solid var(--primary);
+        }
+
+        /* Футер */
+        footer {
+            background-color: var(--nav-bg);
+            padding: 60px 0 30px;
+            border-top: 1px solid rgba(250, 227, 172, 0.1);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.2rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 60px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2.2rem;
+            }
+
+            .nav-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-item {
+                border-bottom: 1px solid rgba(250, 227, 172, 0.1);
+            }
+
+            .dev-slide {
+                padding: 30px 20px;
+            }
+
+            .dev-photo {
+                width: 150px;
+                height: 150px;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка страницы -->
+    <header class="page-header">
+        <h1 class="page-title">О разработчиках</h1>
+        <p class="page-subtitle">Команда, которая создала этот проект о мемах и цифровой культуре</p>
+    </header>
+
+    <!-- Главное меню -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="nav-grid">
+                <div class="nav-item">
+                    <a href="index.html" class="nav-link">Главная</a>
+                </div>
+                <div class="nav-item">
+                    <a href="history.html" class="nav-link">История</a>
+                </div>
+                <div class="nav-item">
+                    <a href="#types" class="nav-link">Типы мемов</a>
+                </div>
+                <div class="nav-item">
+                    <a href="cultur.html" class="nav-link">Культура</a>
+                </div>
+                <div class="nav-item">
+                    <a href="gallery.html" class="nav-link">Галерея</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Основной контент -->
+    <div class="container">
+        <!-- Слайдер разработчиков -->
+        <section>
+            <h2>Наша команда</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto;">Мы — группа энтузиастов, объединенных любовью к интернет-культуре. Каждый из нас внес свой вклад в создание этого проекта.</p>
+            
+            <div class="dev-slider">
+                <div class="slider-track">
+                    <!-- Слайд 1 -->
+                    <div class="dev-slide">
+                        <img src="https://via.placeholder.com/400x400/1A2026/FAE3AC?text=Никита+Абраменко" alt="Никита Абраменко" class="dev-photo">
+                        <h3 class="dev-name">Никита Абраменко</h3>
+                        <div class="dev-role">Главный разработчик</div>
+                        <p class="dev-bio">Отвечал за архитектуру проекта, основную логику работы сайта и интеграцию всех компонентов. Специалист по фронтенд-разработке с 5-летним опытом.</p>
+                        <div class="dev-skills">
+                            <span class="skill-tag">HTML/CSS</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">React</span>
+                            <span class="skill-tag">UI/UX</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Слайд 2 -->
+                    <div class="dev-slide">
+                        <img src="https://via.placeholder.com/400x400/1A2026/D12128?text=Александр+Багдасарян" alt="Александр Багдасарян" class="dev-photo">
+                        <h3 class="dev-name">Александр Багдасарян</h3>
+                        <div class="dev-role">Дизайнер и контент-менеджер</div>
+                        <p class="dev-bio">Создал визуальную концепцию проекта, разработал дизайн всех страниц и подготовил контент о мемах. Имеет образование в области цифрового искусства.</p>
+                        <div class="dev-skills">
+                            <span class="skill-tag">Figma</span>
+                            <span class="skill-tag">Photoshop</span>
+                            <span class="skill-tag">Анимация</span>
+                            <span class="skill-tag">Копирайтинг</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Слайд 3 -->
+                    <div class="dev-slide">
+                        <img src="https://via.placeholder.com/400x400/1A2026/01344F?text=Тимур+Шарыпов" alt="Тимур Шарыпов" class="dev-photo">
+                        <h3 class="dev-name">Тимур Шарыпов</h3>
+                        <div class="dev-role">Тестировщик и исследователь</div>
+                        <p class="dev-bio">Провел полное тестирование сайта, собрал исторические данные о мемах и участвовал в разработке структуры проекта. Эксперт в области интернет-культуры.</p>
+                        <div class="dev-skills">
+                            <span class="skill-tag">QA</span>
+                            <span class="skill-tag">Аналитика</span>
+                            <span class="skill-tag">Исследования</span>
+                            <span class="skill-tag">Мемология</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="slider-nav">
+                    <div class="slider-dot active" data-slide="0"></div>
+                    <div class="slider-dot" data-slide="1"></div>
+                    <div class="slider-dot" data-slide="2"></div>
+                </div>
+            </div>
+            
+            <!-- Контейнер для комментариев -->
+            <div class="comments-container">
+                <div class="dev-comment active" id="comment-0">
+                    <h4 class="comment-title">О работе над проектом</h4>
+                    <p class="comment-text">Самым сложным было создать единый стиль для всех страниц, сохранив при этом уникальность каждого раздела. Я горжусь тем, как нам удалось реализовать анимации и интерактивные элементы без потери производительности.</p>
+                </div>
+                
+                <div class="dev-comment" id="comment-1">
+                    <h4 class="comment-title">О работе над проектом</h4>
+                    <p class="comment-text">Интересно было исследовать эволюцию мемов и подбирать визуальные примеры. Особое внимание мы уделили типографике и цветовой схеме, чтобы сайт выглядел современно, но не отвлекал от контента.</p>
+                </div>
+                
+                <div class="dev-comment" id="comment-2">
+                    <h4 class="comment-title">О работе над проектом</h4>
+                    <p class="comment-text">Я обнаружил удивительные параллели между развитием мемов и технологий. Надеюсь, наш проект поможет людям лучше понять цифровую культуру и ее влияние на общество.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Вся команда -->
+        <section class="team-section">
+            <h2>Роли в проекте</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto;">Каждый участник команды отвечал за определенные аспекты проекта</p>
+            
+            <div class="team-grid">
+                <div class="team-card">
+                    <img src="https://via.placeholder.com/400x400/1A2026/FAE3AC?text=Никита+Абраменко" alt="Никита Абраменко" class="team-photo">
+                    <h3>Никита Абраменко</h3>
+                    <p>Разработка структуры сайта, реализация функционала, адаптивная верстка, JavaScript-анимации</p>
+                </div>
+                
+                <div class="team-card">
+                    <img src="https://via.placeholder.com/400x400/1A2026/D12128?text=Александр+Багдасарян" alt="Александр Багдасарян" class="team-photo">
+                    <h3>Александр Багдасарян</h3>
+                    <p>Дизайн интерфейса, подбор цветовой схемы, создание иллюстраций, написание контента</p>
+                </div>
+                
+                <div class="team-card">
+                    <img src="https://via.placeholder.com/400x400/1A2026/01344F?text=Тимур+Шарыпов" alt="Тимур Шарыпов" class="team-photo">
+                    <h3>Тимур Шарыпов</h3>
+                    <p>Тестирование, сбор информации о мемах, проверка кросс-браузерной совместимости, SEO-оптимизация</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- О проекте -->
+        <section>
+            <h2>О проекте</h2>
+            <p>Этот сайт был создан в рамках учебного проекта по веб-разработке. Наша цель — исследовать феномен интернет-мемов как культурного явления и представить их историю в увлекательной форме.</p>
+            <p>Мы использовали современные веб-технологии, чтобы сделать сайт интерактивным и удобным для пользователей. Особое внимание уделялось адаптивности дизайна и скорости загрузки страниц.</p>
+            <p>Проект продолжает развиваться — мы планируем добавлять новые разделы и функциональность. Если у вас есть предложения или замечания, пожалуйста, свяжитесь с нами.</p>
+        </section>
+    </div>
+
+    <!-- Футер -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-column">
+                <h3>Навигация</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="history.html">История</a></li>
+                    <li><a href="#types">Типы мемов</a></li>
+                    <li><a href="cultur.html">Культура</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Контакты</h3>
+                <ul class="footer-links">
+                    <li><a href="#">О проекте</a></li>
+                    <li><a href="#">Команда</a></li>
+                    <li><a href="#">Для СМИ</a></li>
+                    <li><a href="#">Реклама</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            © 2023 Мемы по-русски | Создано с ❤️ командой разработчиков
+        </div>
+    </footer>
+
+    <script>
+        // Слайдер разработчиков
+        const track = document.querySelector('.slider-track');
+        const dots = document.querySelectorAll('.slider-dot');
+        const comments = document.querySelectorAll('.dev-comment');
+        let currentSlide = 0;
+        const slideCount = 3;
+        
+        // Инициализация
+        showSlide(currentSlide);
+        
+        // Обработчики для точек
+        dots.forEach(dot => {
+            dot.addEventListener('click', function() {
+                const slideIndex = parseInt(this.getAttribute('data-slide'));
+                currentSlide = slideIndex;
+                showSlide(currentSlide);
+            });
+        });
+        
+        // Функция показа слайда
+        function showSlide(index) {
+            track.style.transform = `translateX(-${index * 100}%)`;
+            
+            // Обновление активной точки
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+            
+            // Показ соответствующего комментария
+            comments.forEach(comment => {
+                comment.classList.remove('active');
+            });
+            
+            comments[index].classList.add('active');
+        }
+        
+        // Автопрокрутка
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % slideCount;
+            showSlide(currentSlide);
+        }, 5000);
+        
+        // Плавный скролл для якорных ссылок
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
