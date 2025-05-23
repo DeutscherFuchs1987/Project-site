@@ -317,38 +317,58 @@
         /* Футер */
         footer {
             background-color: var(--nav-bg);
-            padding: 60px 0 30px;
+            padding: 80px 0 40px;
             border-top: 1px solid rgba(250, 227, 172, 0.1);
+            text-align: center;
         }
 
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            max-width: 1200px;
+        .footer-content {
+            max-width: 1000px;
             margin: 0 auto;
             padding: 0 20px;
         }
 
-        .footer-column h3 {
+        .footer-team {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-dev {
+            max-width: 300px;
+        }
+
+        .footer-dev-name {
             font-size: 1.2rem;
             color: var(--accent);
-            margin-bottom: 20px;
+            margin-bottom: 5px;
+        }
+
+        .footer-dev-role {
+            color: var(--primary);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .footer-dev-contacts {
+            font-size: 0.9rem;
+            color: var(--text-muted);
         }
 
         .footer-links {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .footer-links li {
-            margin-bottom: 12px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
         }
 
         .footer-links a {
-            color: var(--text-muted);
+            color: var(--text-light);
             text-decoration: none;
+            transition: color 0.3s ease;
         }
 
         .footer-links a:hover {
@@ -356,10 +376,9 @@
         }
 
         .copyright {
-            text-align: center;
-            margin-top: 60px;
             color: var(--text-muted);
             font-size: 0.9rem;
+            margin-top: 40px;
         }
 
         /* Адаптивность */
@@ -409,13 +428,13 @@
                     <a href="history.html" class="nav-link">История</a>
                 </div>
                 <div class="nav-item">
-                    <a href="#types" class="nav-link">Типы мемов</a>
+                    <a href="type.html" class="nav-link">Типы мемов</a>
                 </div>
                 <div class="nav-item">
                     <a href="cultur.html" class="nav-link">Культура</a>
                 </div>
                 <div class="nav-item">
-                    <a href="gallery.html" class="nav-link">Галерея</a>
+                    <a href="about.html" class="nav-link">О нас</a>
                 </div>
             </div>
         </div>
@@ -432,40 +451,36 @@
                 <div class="slider-track">
                     <!-- Слайд 1 -->
                     <div class="dev-slide">
-                        <img src="https://via.placeholder.com/400x400/1A2026/FAE3AC?text=Никита+Абраменко" alt="Никита Абраменко" class="dev-photo">
+                        <img src="image/Abramenko.jpg" alt="Никита Абраменко" class="dev-photo">
                         <h3 class="dev-name">Никита Абраменко</h3>
                         <div class="dev-role">Главный разработчик</div>
-                        <p class="dev-bio">Отвечал за архитектуру проекта, основную логику работы сайта и интеграцию всех компонентов. Специалист по фронтенд-разработке с 5-летним опытом.</p>
+                        <p class="dev-bio">Отвечал за архитектуру проекта, основную логику работы сайта и интеграцию всех компонентов.</p>
                         <div class="dev-skills">
                             <span class="skill-tag">HTML/CSS</span>
                             <span class="skill-tag">JavaScript</span>
-                            <span class="skill-tag">React</span>
-                            <span class="skill-tag">UI/UX</span>
                         </div>
                     </div>
                     
                     <!-- Слайд 2 -->
                     <div class="dev-slide">
-                        <img src="https://via.placeholder.com/400x400/1A2026/D12128?text=Александр+Багдасарян" alt="Александр Багдасарян" class="dev-photo">
+                        <img src="image/Bagdasaryan.jpg" alt="Александр Багдасарян" class="dev-photo">
                         <h3 class="dev-name">Александр Багдасарян</h3>
                         <div class="dev-role">Дизайнер и контент-менеджер</div>
-                        <p class="dev-bio">Создал визуальную концепцию проекта, разработал дизайн всех страниц и подготовил контент о мемах. Имеет образование в области цифрового искусства.</p>
+                        <p class="dev-bio">Создал визуальную концепцию проекта, разработал дизайн всех страниц и подготовил контент о мемах.</p>
                         <div class="dev-skills">
                             <span class="skill-tag">Figma</span>
                             <span class="skill-tag">Photoshop</span>
-                            <span class="skill-tag">Анимация</span>
                             <span class="skill-tag">Копирайтинг</span>
                         </div>
                     </div>
                     
                     <!-- Слайд 3 -->
                     <div class="dev-slide">
-                        <img src="https://via.placeholder.com/400x400/1A2026/01344F?text=Тимур+Шарыпов" alt="Тимур Шарыпов" class="dev-photo">
+                        <img src="image/Sharypov.jpg" alt="Тимур Шарыпов" class="dev-photo">
                         <h3 class="dev-name">Тимур Шарыпов</h3>
                         <div class="dev-role">Тестировщик и исследователь</div>
                         <p class="dev-bio">Провел полное тестирование сайта, собрал исторические данные о мемах и участвовал в разработке структуры проекта. Эксперт в области интернет-культуры.</p>
                         <div class="dev-skills">
-                            <span class="skill-tag">QA</span>
                             <span class="skill-tag">Аналитика</span>
                             <span class="skill-tag">Исследования</span>
                             <span class="skill-tag">Мемология</span>
@@ -506,19 +521,19 @@
             
             <div class="team-grid">
                 <div class="team-card">
-                    <img src="https://via.placeholder.com/400x400/1A2026/FAE3AC?text=Никита+Абраменко" alt="Никита Абраменко" class="team-photo">
+                    <img src="image/Abramenko.jpg" alt="Никита Абраменко" class="team-photo">
                     <h3>Никита Абраменко</h3>
                     <p>Разработка структуры сайта, реализация функционала, адаптивная верстка, JavaScript-анимации</p>
                 </div>
                 
                 <div class="team-card">
-                    <img src="https://via.placeholder.com/400x400/1A2026/D12128?text=Александр+Багдасарян" alt="Александр Багдасарян" class="team-photo">
+                    <img src="image/Bagdasaryan.jpg" alt="Александр Багдасарян" class="team-photo">
                     <h3>Александр Багдасарян</h3>
                     <p>Дизайн интерфейса, подбор цветовой схемы, создание иллюстраций, написание контента</p>
                 </div>
                 
                 <div class="team-card">
-                    <img src="https://via.placeholder.com/400x400/1A2026/01344F?text=Тимур+Шарыпов" alt="Тимур Шарыпов" class="team-photo">
+                    <img src="image/Sharypov.jpg" alt="Тимур Шарыпов" class="team-photo">
                     <h3>Тимур Шарыпов</h3>
                     <p>Тестирование, сбор информации о мемах, проверка кросс-браузерной совместимости, SEO-оптимизация</p>
                 </div>
@@ -530,35 +545,44 @@
             <h2>О проекте</h2>
             <p>Этот сайт был создан в рамках учебного проекта по веб-разработке. Наша цель — исследовать феномен интернет-мемов как культурного явления и представить их историю в увлекательной форме.</p>
             <p>Мы использовали современные веб-технологии, чтобы сделать сайт интерактивным и удобным для пользователей. Особое внимание уделялось адаптивности дизайна и скорости загрузки страниц.</p>
-            <p>Проект продолжает развиваться — мы планируем добавлять новые разделы и функциональность. Если у вас есть предложения или замечания, пожалуйста, свяжитесь с нами.</p>
+            <p>Проект продолжает развиваться — мы планируем добавлять новые разделы и функциональность.</p>
         </section>
     </div>
 
     <!-- Футер -->
     <footer>
-        <div class="footer-grid">
-            <div class="footer-column">
-                <h3>Навигация</h3>
-                <ul class="footer-links">
-                    <li><a href="index.html">Главная</a></li>
-                    <li><a href="history.html">История</a></li>
-                    <li><a href="#types">Типы мемов</a></li>
-                    <li><a href="cultur.html">Культура</a></li>
-                </ul>
+        <div class="footer-content">
+            <div class="footer-team">
+                <div class="footer-dev">
+                    <div class="footer-dev-name">Никита Абраменко</div>
+                    <div class="footer-dev-role">Главный разработчик</div>
+                    <div class="footer-dev-contacts">HTML/CSS, JavaScript</div>
+                </div>
+                
+                <div class="footer-dev">
+                    <div class="footer-dev-name">Александр Багдасарян</div>
+                    <div class="footer-dev-role">Дизайнер и контент-менеджер</div>
+                    <div class="footer-dev-contacts">Figma, Photoshop, Копирайтинг</div>
+                </div>
+                
+                <div class="footer-dev">
+                    <div class="footer-dev-name">Тимур Шарыпов</div>
+                    <div class="footer-dev-role">Тестировщик и исследователь</div>
+                    <div class="footer-dev-contacts">Аналитика, Исследования, Мемология</div>
+                </div>
             </div>
-            <div class="footer-column">
-                <h3>Контакты</h3>
-                <ul class="footer-links">
-                    <li><a href="#">О проекте</a></li>
-                    <li><a href="#">Команда</a></li>
-                    <li><a href="#">Для СМИ</a></li>
-                    <li><a href="#">Реклама</a></li>
-                </ul>
+            
+            <div class="footer-links">
+                <a href="index.html">Главная</a>
+                <a href="history.html">История</a>
+                <a href="type.html">Типы мемов</a>
+                <a href="cultur.html">Культура</a>
+                <a href="about.html">О нас</a>
             </div>
-        </div>
-        
-        <div class="copyright">
-            © 2023 Мемы по-русски | Создано с ❤️ командой разработчиков
+            
+            <div class="copyright">
+                © 2025 Мемы по-русски | Исследование цифровой культуры
+            </div>
         </div>
     </footer>
 

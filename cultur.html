@@ -263,38 +263,58 @@
         /* Футер */
         footer {
             background-color: var(--nav-bg);
-            padding: 60px 0 30px;
+            padding: 80px 0 40px;
             border-top: 1px solid rgba(250, 227, 172, 0.1);
+            text-align: center;
         }
 
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            max-width: 1200px;
+        .footer-content {
+            max-width: 1000px;
             margin: 0 auto;
             padding: 0 20px;
         }
 
-        .footer-column h3 {
+        .footer-team {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-dev {
+            max-width: 300px;
+        }
+
+        .footer-dev-name {
             font-size: 1.2rem;
             color: var(--accent);
-            margin-bottom: 20px;
+            margin-bottom: 5px;
+        }
+
+        .footer-dev-role {
+            color: var(--primary);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .footer-dev-contacts {
+            font-size: 0.9rem;
+            color: var(--text-muted);
         }
 
         .footer-links {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .footer-links li {
-            margin-bottom: 12px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
         }
 
         .footer-links a {
-            color: var(--text-muted);
+            color: var(--text-light);
             text-decoration: none;
+            transition: color 0.3s ease;
         }
 
         .footer-links a:hover {
@@ -302,10 +322,9 @@
         }
 
         .copyright {
-            text-align: center;
-            margin-top: 60px;
             color: var(--text-muted);
             font-size: 0.9rem;
+            margin-top: 40px;
         }
 
         /* Адаптивность */
@@ -342,19 +361,19 @@
         <div class="nav-container">
             <div class="nav-grid">
                 <div class="nav-item">
-                    <a href="#about" class="nav-link">Главная</a>
+                    <a href="index.html" class="nav-link">Главная</a>
                 </div>
                 <div class="nav-item">
                     <a href="history.html" class="nav-link">История</a>
                 </div>
                 <div class="nav-item">
-                    <a href="#types" class="nav-link">Типы мемов</a>
+                    <a href="type.html" class="nav-link">Типы мемов</a>
                 </div>
                 <div class="nav-item">
                     <a href="cultur.html" class="nav-link">Культура</a>
                 </div>
                 <div class="nav-item">
-                    <a href="gallery.html" class="nav-link">Галерея</a>
+                    <a href="about.html" class="nav-link">О нас</a>
                 </div>
             </div>
         </div>
@@ -399,14 +418,13 @@
 
             <div class="culture-examples">
                 <div class="culture-example">
-                    <img src="https://via.placeholder.com/400x200/1A2026/FAE3AC?text=Мемные+слова" alt="Мемные слова" class="culture-img">
+
                     <div class="culture-caption">
                         <div class="culture-example-title">Слова из мемов</div>
                         <p>"Кринж", "Кринжово", "Кринжануть" — примеры языковой эволюции через мемы</p>
                     </div>
                 </div>
                 <div class="culture-example">
-                    <img src="https://via.placeholder.com/400x200/1A2026/D12128?text=Речевые+шаблоны" alt="Речевые шаблоны" class="culture-img">
                     <div class="culture-caption">
                         <div class="culture-example-title">Шаблоны коммуникации</div>
                         <p>Фразы из мемов становятся частью повседневного общения</p>
@@ -484,14 +502,14 @@
 
             <div class="culture-examples">
                 <div class="culture-example">
-                    <img src="https://via.placeholder.com/400x200/1A2026/FAE3AC?text=Мем-арт" alt="Мем-арт" class="culture-img">
+
                     <div class="culture-caption">
                         <div class="culture-example-title">Выставки мемов</div>
                         <p>Музеи современного искусства включают мемы в свои экспозиции</p>
                     </div>
                 </div>
                 <div class="culture-example">
-                    <img src="https://via.placeholder.com/400x200/1A2026/D12128?text=NFT+мемы" alt="NFT мемы" class="culture-img">
+
                     <div class="culture-caption">
                         <div class="culture-example-title">NFT-мемы</div>
                         <p>Классические мемы продаются как цифровое искусство</p>
@@ -500,100 +518,43 @@
             </div>
         </section>
 
-        <!-- Политическое влияние -->
-        <section id="politics">
-            <h2>Политическое влияние</h2>
-            <p>Мемы стали мощным инструментом политической коммуникации:</p>
-
-            <div class="impact-grid">
-                <div class="impact-card">
-                    <div class="impact-icon">🗳️</div>
-                    <h3 class="impact-title">Выборы</h3>
-                    <p>Политики используют мемы для привлечения молодёжи.</p>
-                </div>
-
-                <div class="impact-card">
-                    <div class="impact-icon">⚔️</div>
-                    <h3 class="impact-title">Пропаганда</h3>
-                    <p>Мемы стали оружием в информационных войнах.</p>
-                </div>
-
-                <div class="impact-card">
-                    <div class="impact-icon">✊</div>
-                    <h3 class="impact-title">Протесты</h3>
-                    <p>Мемы мобилизуют людей на акции и формируют повестку.</p>
-                </div>
-            </div>
-
-            <div class="quote">
-                "Кто контролирует мемы — контролирует умы молодого поколения."
-                <div class="quote-author">— Илон Маск</div>
-            </div>
-
-            <h3>Примеры политических мемов</h3>
-            <div class="nav-cards">
-                <div class="nav-card">
-                    <h3 class="nav-card-title">"Нас здесь не стояло"</h3>
-                    <p>Пример мема, ставшего политическим слоганом</p>
-                </div>
-                <div class="nav-card">
-                    <h3 class="nav-card-title">Выборные кампании</h3>
-                    <p>Политики создают мемы для привлечения избирателей</p>
-                </div>
-                <div class="nav-card">
-                    <h3 class="nav-card-title">Социальная критика</h3>
-                    <p>Мемы как инструмент политической сатиры</p>
-                </div>
-            </div>
-        </section>
+        
     </div>
 
     <!-- Футер -->
     <footer>
-        <div class="footer-grid">
-            <div class="footer-column">
-                <h3>Разделы</h3>
-                <ul class="footer-links">
-                    <li><a href="/">Главная</a></li>
-                    <li><a href="/history">История</a></li>
-                    <li><a href="/types">Типы мемов</a></li>
-                    <li><a href="/culture">Культура</a></li>
-                </ul>
+        <div class="footer-content">
+            <div class="footer-team">
+                <div class="footer-dev">
+                    <div class="footer-dev-name">Никита Абраменко</div>
+                    <div class="footer-dev-role">Главный разработчик</div>
+                    <div class="footer-dev-contacts">HTML/CSS, JavaScript</div>
+                </div>
+                
+                <div class="footer-dev">
+                    <div class="footer-dev-name">Александр Багдасарян</div>
+                    <div class="footer-dev-role">Дизайнер и контент-менеджер</div>
+                    <div class="footer-dev-contacts">Figma, Photoshop, Копирайтинг</div>
+                </div>
+                
+                <div class="footer-dev">
+                    <div class="footer-dev-name">Тимур Шарыпов</div>
+                    <div class="footer-dev-role">Тестировщик и исследователь</div>
+                    <div class="footer-dev-contacts">Аналитика, Исследования, Мемология</div>
+                </div>
             </div>
             
-            <div class="footer-column">
-                <h3>Культура</h3>
-                <ul class="footer-links">
-                    <li><a href="#language">Язык</a></li>
-                    <li><a href="#society">Общество</a></li>
-                    <li><a href="#art">Искусство</a></li>
-                    <li><a href="#politics">Политика</a></li>
-                </ul>
+            <div class="footer-links">
+                <a href="index.html">Главная</a>
+                <a href="history.html">История</a>
+                <a href="type.html">Типы мемов</a>
+                <a href="cultur.html">Культура</a>
+                <a href="about.html">О нас</a>
             </div>
             
-            <div class="footer-column">
-                <h3>Ресурсы</h3>
-                <ul class="footer-links">
-                    <li><a href="#">Исследования</a></li>
-                    <li><a href="#">Книги</a></li>
-                    <li><a href="#">Документальные фильмы</a></li>
-                    <li><a href="#">Архив</a></li>
-                </ul>
+            <div class="copyright">
+                © 2025 Мемы по-русски | Исследование цифровой культуры
             </div>
-            
-            <div class="footer-column">
-                <h3>Контакты</h3>
-                <ul class="footer-links">
-                    <li><a href="#">О проекте</a></li>
-                    <li><a href="#">Команда</a></li>
-                    <li><a href="#">Сотрудничество</a></li>
-                    <li><a href="#">Для СМИ</a></li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="copyright">
-            © 2023 Мемы по-русски | Исследование цифровой культуры
         </div>
     </footer>
 

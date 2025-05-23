@@ -254,7 +254,12 @@
             padding: 25px;
             border: 1px solid rgba(250, 227, 172, 0.1);
             transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
+
 
         .nav-card:hover {
             border-color: var(--primary);
@@ -271,38 +276,58 @@
         /* Футер */
         footer {
             background-color: var(--nav-bg);
-            padding: 60px 0 30px;
+            padding: 80px 0 40px;
             border-top: 1px solid rgba(250, 227, 172, 0.1);
+            text-align: center;
         }
 
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            max-width: 1200px;
+        .footer-content {
+            max-width: 1000px;
             margin: 0 auto;
             padding: 0 20px;
         }
 
-        .footer-column h3 {
+        .footer-team {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-dev {
+            max-width: 300px;
+        }
+
+        .footer-dev-name {
             font-size: 1.2rem;
             color: var(--accent);
-            margin-bottom: 20px;
+            margin-bottom: 5px;
+        }
+
+        .footer-dev-role {
+            color: var(--primary);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .footer-dev-contacts {
+            font-size: 0.9rem;
+            color: var(--text-muted);
         }
 
         .footer-links {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .footer-links li {
-            margin-bottom: 12px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
         }
 
         .footer-links a {
-            color: var(--text-muted);
+            color: var(--text-light);
             text-decoration: none;
+            transition: color 0.3s ease;
         }
 
         .footer-links a:hover {
@@ -310,10 +335,9 @@
         }
 
         .copyright {
-            text-align: center;
-            margin-top: 60px;
             color: var(--text-muted);
             font-size: 0.9rem;
+            margin-top: 40px;
         }
 
         /* Адаптивность */
@@ -383,7 +407,7 @@
                     <a href="cultur.html" class="nav-link">Культура</a>
                 </div>
                 <div class="nav-item">
-                    <a href="gallery.html" class="nav-link">Галерея</a>
+                    <a href="about.html" class="nav-link">О нас</a>
                 </div>
             </div>
         </div>
@@ -481,11 +505,48 @@
             <h3>Золотой век Двача (2006-2012)</h3>
             <p>Анонимные имиджборды становятся инкубаторами мемов. Появляются: "Олдфаги помнят", "Ты че такой дерзкий?", "Такова жизнь, сказал ёжик".</p>
 
+            <div class="meme-examples">
+                <div class="meme-example">
+                    <img src="image/oldfag.png" alt="Превед медвед" class="meme-img">
+                    <div class="meme-caption">"Олдфаги помнят"</div>
+                </div>
+                <div class="meme-example">
+                    <img src="image/derz.png" alt="Я у мамы дурачок" class="meme-img">
+                    <div class="meme-caption">"Ты че такой дерзкий?"</div>
+                </div>
+                <div class="meme-example">
+                    <img src="image/ejz.png" alt="Я у мамы дурачок" class="meme-img">
+                    <div class="meme-caption">"Такова жизнь, сказал ёжик"</div>
+                </div>
+            </div>
+
             <h3>Эра ВКонтакте (2012-2016)</h3>
             <p>Социальные сети делают мемы массовыми. Популярность набирают: "Ну чо, как там в Майнкрафте?", "Дуров, дай списать!", "Кризис — время возможностей".</p>
 
+            <div class="meme-examples">
+                <div class="meme-example">
+                    <img src="image/minecraft.png" alt="Превед медвед" class="meme-img">
+                    <div class="meme-caption">"Ну чо, как там в Майнкрафте?"</div>
+                </div>
+                <div class="meme-example">
+                    <img src="image/durov.png" alt="Я у мамы дурачок" class="meme-img">
+                    <div class="meme-caption">"Дуров, дай списать!"</div>
+                </div>
+            </div>
+
             <h3>Современный период (2017-н.в.)</h3>
             <p>Мемы становятся сложнее, появляются нарративные форматы. Популярны: "Вжух и ты кот", "Нас здесь не стояло", мемы с советскими фильмами.</p>
+
+            <div class="meme-examples">
+                <div class="meme-example">
+                    <img src="image/cat.png" alt="Превед медвед" class="meme-img">
+                    <div class="meme-caption">"Вжух и ты кот"</div>
+                </div>
+                <div class="meme-example">
+                    <img src="image/huy.png" alt="Я у мамы дурачок" class="meme-img">
+                    <div class="meme-caption">"Нас здесь не стояло"</div>
+                </div>
+            </div>
         </section>
 
         <!-- Эволюция форматов -->
@@ -496,10 +557,12 @@
                 <div class="nav-card">
                     <h3 class="nav-card-title">Текстовые мемы</h3>
                     <p>Форумные посты, демотиваторы, фразы из чатов (2000-2005)</p>
+                    <img src="image/up-down.png" alt="">
                 </div>
                 <div class="nav-card">
                     <h3 class="nav-card-title">Макросы</h3>
                     <p>Изображения с подписями (LOLcats, Advice Animals) (2005-2010)</p>
+                    <img src="image/lolcat.png" alt="">
                 </div>
                 <div class="nav-card">
                     <h3 class="nav-card-title">Видеомемы</h3>
@@ -508,68 +571,48 @@
                 <div class="nav-card">
                     <h3 class="nav-card-title">Мемы-нарративы</h3>
                     <p>Сложные истории, многочастные мемы (2015-н.в.)</p>
+                    <img src="image/sigma.png" alt="">
                 </div>
             </div>
         </section>
 
-        <!-- Галерея -->
-        <section id="gallery">
-            <h2>Галерея исторических мемов</h2>
-            
-            <div class="meme-examples">
-                <div class="meme-example">
-                    <img src="https://via.placeholder.com/400x200/1A2026/FAE3AC?text=Dancing+Baby" alt="Dancing Baby" class="meme-img">
-                    <div class="meme-caption">Dancing Baby (1996) — первый вирусный мем</div>
-                </div>
-                <div class="meme-example">
-                    <img src="https://via.placeholder.com/400x200/1A2026/D12128?text=All+Your+Base" alt="All Your Base" class="meme-img">
-                    <div class="meme-caption">All Your Base Are Belong To Us (2001)</div>
-                </div>
-                <div class="meme-example">
-                    <img src="https://via.placeholder.com/400x200/1A2026/01344F?text=LOLcats" alt="LOLcats" class="meme-img">
-                    <div class="meme-caption">LOLcats (2005) — начало эры макросов</div>
-                </div>
-                <div class="meme-example">
-                    <img src="https://via.placeholder.com/400x200/1A2026/FAE3AC?text=Ну+чо+Майнкрафт" alt="Ну чо Майнкрафт" class="meme-img">
-                    <div class="meme-caption">"Ну чо, как там в Майнкрафте?" (2012)</div>
-                </div>
-                <div class="meme-example">
-                    <img src="https://via.placeholder.com/400x200/1A2026/D12128?text=Вжух+и+ты+кот" alt="Вжух и ты кот" class="meme-img">
-                    <div class="meme-caption">"Вжух и ты кот" (2018)</div>
-                </div>
-                <div class="meme-example">
-                    <img src="https://via.placeholder.com/400x200/1A2026/01344F?text=TikTok+мем" alt="TikTok мем" class="meme-img">
-                    <div class="meme-caption">Типичный TikTok-мем (2020)</div>
-                </div>
-            </div>
-        </section>
+        
     </div>
 
     <!-- Футер -->
     <footer>
-        <div class="footer-grid">
-            <div class="footer-column">
-                <h3>Навигация</h3>
-                <ul class="footer-links">
-                    <li><a href="/">Главная</a></li>
-                    <li><a href="/history">История</a></li>
-                    <li><a href="/types">Типы мемов</a></li>
-                    <li><a href="/culture">Культура</a></li>
-                </ul>
+        <div class="footer-content">
+            <div class="footer-team">
+                <div class="footer-dev">
+                    <div class="footer-dev-name">Никита Абраменко</div>
+                    <div class="footer-dev-role">Главный разработчик</div>
+                    <div class="footer-dev-contacts">HTML/CSS, JavaScript</div>
+                </div>
+                
+                <div class="footer-dev">
+                    <div class="footer-dev-name">Александр Багдасарян</div>
+                    <div class="footer-dev-role">Дизайнер и контент-менеджер</div>
+                    <div class="footer-dev-contacts">Figma, Photoshop, Копирайтинг</div>
+                </div>
+                
+                <div class="footer-dev">
+                    <div class="footer-dev-name">Тимур Шарыпов</div>
+                    <div class="footer-dev-role">Тестировщик и исследователь</div>
+                    <div class="footer-dev-contacts">Аналитика, Исследования, Мемология</div>
+                </div>
             </div>
-            <div class="footer-column">
-                <h3>Контакты</h3>
-                <ul class="footer-links">
-                    <li><a href="#">О проекте</a></li>
-                    <li><a href="#">Команда</a></li>
-                    <li><a href="#">Для СМИ</a></li>
-                    <li><a href="#">Реклама</a></li>
-                </ul>
+            
+            <div class="footer-links">
+                <a href="index.html">Главная</a>
+                <a href="history.html">История</a>
+                <a href="#types">Типы мемов</a>
+                <a href="cultur.html">Культура</a>
+                <a href="about.html">О нас</a>
             </div>
-        </div>
-        
-        <div class="copyright">
-            © 2023 Мемы по-русски | Исследование цифровой культуры
+            
+            <div class="copyright">
+                © 2025 Мемы по-русски | Исследование цифровой культуры
+            </div>
         </div>
     </footer>
 
